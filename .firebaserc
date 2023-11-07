@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinicaonline-2023": {
+      "hosting": {
+        "ClinicaOnline_2023": [
+          "clinicaonline-2023"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinicaonline-2023"
+  }
+}

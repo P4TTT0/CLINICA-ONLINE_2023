@@ -1,0 +1,36 @@
+*
+{
+    color: #9A999A;
+}
+
+.navbar
+{
+    background-color: #474448 !important;
+    padding: 10px 50px;
+}
+
+.login-container
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #34323570;
+    padding: 0px 20px;
+    border-radius: 20px;
+    .bi-person-circle
+    {
+        margin-right: 10px;
+    }
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+}

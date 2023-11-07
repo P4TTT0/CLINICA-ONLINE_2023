@@ -1,0 +1,19 @@
+.screen
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-success
+{
+    background-color: #FF181830 !important;
+    border-radius: 2px;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    border-radius: 10px;
+}

@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "ClinicaOnline_2023",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

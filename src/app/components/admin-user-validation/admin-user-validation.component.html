@@ -1,0 +1,50 @@
+<div class="screen">
+    <div class="background">
+        <div class="users-container">
+            <div>
+                <h1>Validar especialistas</h1>
+            </div>
+            <div class="users">
+                <div class="user-container" *ngFor="let user of this.usersNotAccepted">
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; background-color: #32303388; padding: 5px; margin-bottom: 10px;">          
+                            <div>
+                                <span>@{{user.UserName}}</span>
+                            </div>
+                            <div>
+                                <span>Solicitud: </span>
+                                <span>{{user.JoinDate.toDate() | date: 'dd/MM/yyyy HH:mm'}}</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; padding: 10px;">
+                            <div>
+                                <span>NOMBRE: </span>
+                                <span>{{user.Nombre}}</span>
+                            </div>
+                            <div>
+                                <SPAN>APELLIDO: </SPAN>
+                                <span>{{user.Apellido}}</span>
+                            </div>
+                            <div>
+                                <SPAN>ESPECIALIDAD: </SPAN>
+                                <span>{{user.Especialidad}}</span>
+                            </div>
+                            <div>
+                                <span>DNI: </span>
+                                <span>{{user.DNI}}</span>
+                            </div>
+                        </div>
+                        <div style="width: 100%; display: flex;">
+                            <button type="button" style="margin-right: 20px; width: 100%; " class="btn btn-light button-option button-reject" (click)="onDecideClick(false, user.UserName)">
+                                <i class="bi bi-x"></i>
+                            </button>
+                            <button type="button" style="width: 100%;" class="btn btn-light button-option button-accept" (click)="onDecideClick(true, user.UserName)">
+                                <i class="bi bi-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

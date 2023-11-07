@@ -1,0 +1,33 @@
+<div class="screen">
+    <div class="login-container">
+        <form class="form-container" [formGroup]="form">
+            <div class="title-container">
+                <h2>Login</h2>
+                <i class="bi bi-person-circle"></i>
+            </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="email" class="login-input" placeholder="User name / Email" formControlName="email">
+                    <div *ngIf="form.controls['email'].errors != null">
+                        <small
+                            *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched">¡El
+                            Email / Usuario es requerido!</small>
+                    </div>
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input type="password" class="login-input" placeholder="Password" formControlName="password">
+                    <div *ngIf="form.controls['password'].errors != null">
+                        <small
+                            *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡La
+                            contraseña es requerido!</small>
+                    </div>
+                </div>
+                <p>¿No tienes cuenta? <a href="register">Registrate</a></p>
+            <button type="button" class="btn btn-success" style="margin-top: 20px;">
+                <span (click)="OnLoginClick()" class="button__text">Log In Now</span>
+                <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
