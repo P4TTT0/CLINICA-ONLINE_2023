@@ -22,6 +22,7 @@ import { EspecialistaComponent } from './components/registers/especialista/espec
 import { AdminComponent } from './components/registers/admin/admin.component';
 import { NoValidatedComponent } from './components/no-validated/no-validated.component';
 import { HomeComponent } from './components/home/home.component';
+import { SeleccionarEspecialidadComponent } from './components/registers/especialista/seleccionar-especialidad/seleccionar-especialidad.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HomeComponent } from './components/home/home.component';
     AdminComponent,
     NoValidatedComponent,
     HomeComponent,
+    SeleccionarEspecialidadComponent,
   ],
   imports: [
     BrowserModule,

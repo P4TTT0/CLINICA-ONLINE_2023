@@ -46,27 +46,12 @@
                 </div>
             </div>
             <div>
-                <div style="display: flex;">
-                    <div class="login__field" style="margin-right: 20px;">
-                        <i class="login__icon fas fa-user"></i>
-                        <select class="login-input" formControlName="especialidad">
-                            <option value="Medico">Médico</option>
-                            <option value="Kinesiologo">Kinesiólogo</option>
-                            <option value="Odontologo">Odontólogo</option>
-                            <option value="Pediatra">Pediatra</option>
-                        </select>
-                        <div *ngIf="form.controls['especialidad'].errors != null">
-                            <small *ngIf="form.controls['especialidad'].errors!['required'] && form.controls['especialidad'].touched || this.touched">¡Requerido!</small>
-                            <small *ngIf="form.controls['especialidad'].errors!['pattern'] != null && form.controls['especialidad'].touched || this.touched">¡Inválido!</small>
-                        </div>
-                    </div>
-                    <div class="login__field">
-                        <i class="login__icon fas fa-user"></i>
-                        <input type="email" class="login-input" placeholder="Email" formControlName="email">
-                        <div *ngIf="form.controls['email'].errors != null">
-                            <small *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched || this.touched">¡Requerido!</small>
-                            <small *ngIf="form.controls['email'].errors!['email'] && form.controls['email'].touched || this.touched">¡Invalido!</small>
-                        </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="email" class="login-input" placeholder="Email" formControlName="email">
+                    <div *ngIf="form.controls['email'].errors != null">
+                        <small *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched || this.touched">¡Requerido!</small>
+                        <small *ngIf="form.controls['email'].errors!['email'] && form.controls['email'].touched || this.touched">¡Invalido!</small>
                     </div>
                 </div>
                 <div style="display: flex;">
@@ -89,6 +74,7 @@
                 </div>
             </div>
         </div>
+        <app-seleccionar-especialidad (especilidadSeleccionada)="recibirEspecialidad($event)"></app-seleccionar-especialidad>
         <p>¿Ya tienes cuenta? <a href="login">Inicia sesion</a></p>
         <button type="button" class="btn btn-success" style="margin-top: 20px;">
             <span (click)="onRegisterClick()" class="button__text">Register Now</span>

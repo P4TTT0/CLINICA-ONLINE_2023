@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class EspecialistaComponent {
   public form : FormGroup;
   public touched : boolean = false;
+  
   @Output() registrado = new EventEmitter<boolean>();
 
   constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
@@ -106,6 +107,11 @@ export class EspecialistaComponent {
 
       reader.readAsDataURL(file);
     }
+  }
+
+  public recibirEspecialidad(especialidad : string)
+  {
+    this.form.controls['especialidad'].setValue(especialidad);
   }
 
 }

@@ -31,7 +31,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div *ngIf="this.auth.userName.length > 1">
       <button type="button" (click)="OnLogOutClick()" class="btn">
         <i class="bi bi-box-arrow-right"></i>
       </button>
