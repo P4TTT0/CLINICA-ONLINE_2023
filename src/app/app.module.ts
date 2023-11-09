@@ -20,6 +20,8 @@ import { DatePipe } from '@angular/common';
 import { UserComponent } from './components/registers/user/user.component';
 import { EspecialistaComponent } from './components/registers/especialista/especialista.component';
 import { AdminComponent } from './components/registers/admin/admin.component';
+import { NoValidatedComponent } from './components/no-validated/no-validated.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AdminComponent } from './components/registers/admin/admin.component';
     UserComponent,
     EspecialistaComponent,
     AdminComponent,
+    NoValidatedComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

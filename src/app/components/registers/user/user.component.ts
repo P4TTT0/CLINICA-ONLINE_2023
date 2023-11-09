@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,7 +14,8 @@ Swal
 })
 export class UserComponent {
   public form : FormGroup;
-  public tipo : string = "Usuario";
+  public touched : boolean = false;
+  @Output() registrado = new EventEmitter<boolean>();
 
   constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
     this.form = this.formBuilder.group({
@@ -30,12 +31,25 @@ export class UserComponent {
         ]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       user: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      Image
+      ImageBase64: ['', [Validators.required]],
+      ImageBase64Two: ['', [Validators.required]]
     });
   }
 
   async onRegisterClick()
   {
+    this.touched = true;
+
+    if(!this.form.valid)
+    {
+      Swal.fire(
+        '¡ERROR!',
+        '¡Errores en los campos!',
+        'error'
+      );
+      return;
+    }
+    
     this.loading.show();
     try
     {
@@ -47,7 +61,10 @@ export class UserComponent {
         UserName : this.form.controls['user'].value,
         Validated : null,
         Nombre : this.form.controls['nombre'].value,
+        ObraSocial : this.form.controls['obraSocial'].value,
         Apellido : this.form.controls['apellido'].value,
+        ImageBase64: this.form.controls['ImageBase64'].value,
+        ImageBaseTwo64: this.form.controls['ImageBase64Two'].value,
       }
       const register = await this.auth.register(userData, this.form.controls['password'].value);
       if(!register)
@@ -72,19 +89,41 @@ export class UserComponent {
       return;
     }
 
-    let userUID = await this.auth.getUserUid() || '';
+    this.registrado.emit(true);
 
-    if(this.tipo == 'Usuario')
-    {
-      this.data.SaveDNI(this.form.controls['dni'].value, userUID);
-    }
-    else
-    {
-      if(this.tipo == 'Especialista')
-      {
-        this.data.SaveEspecialidad(this.form.controls['especialidad'].value, userUID);
-      }
-    }
     this.loading.hide();
   }
+
+  onImageSelected(event: any) 
+  {
+    const file = event.target.files[0];
+    if (file) 
+    {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => 
+      {
+        this.form.controls['ImageBase64'].setValue(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onImageTwoSelected(event: any) 
+  {
+    const file = event.target.files[0];
+    if (file) 
+    {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => 
+      {
+        this.form.controls['ImageBase64Two'].setValue(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
 }

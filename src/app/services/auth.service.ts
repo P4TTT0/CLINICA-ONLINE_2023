@@ -14,6 +14,7 @@ export class AuthService {
 
   public logueado : boolean = false;
   public userName : string = "";
+  public rol : string = "";
   public validationState : boolean | null = null;
 
   public async logIn(emailOrUsername: string, password: string) {
@@ -28,6 +29,8 @@ export class AuthService {
       const uid = await this.getUserUid() || '';
       this.userName = await this.data.getUserNameByUID(uid);
       this.validationState = await this.data.getValidationStateByUID(uid);
+      this.rol = await this.data.getUserRolByEmailOrUserName(emailOrUsername);
+      console.log(this.rol);
       this.logueado = true;
 
       return credential;
@@ -40,7 +43,8 @@ export class AuthService {
   {
     this.logueado = false;
     this.userName = '';
-    localStorage.removeItem('userToken');
+    this.rol = "";
+    this.validationState = false;
     return await this.ngFireAuth.signOut();
   }
 
@@ -82,5 +86,7 @@ export class AuthService {
     const uid = await this.getUserUid() || '';
     this.userName = await this.data.getUserNameByUID(uid);
     this.logueado = true;
+    this.validationState = await this.data.getValidationStateByUID(uid);
+    this.rol = await this.data.getUserRolByEmailOrUserName(this.userName);
   }
 }

@@ -34,3 +34,10 @@
     align-items: center;
     z-index: 1000000;
 }
+
+.btn
+{
+    background-color: #ff888862;
+    border-radius: 10px;
+    color: #FFE5D9 !important;
+}

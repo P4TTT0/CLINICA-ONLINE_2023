@@ -1,1 +1,98 @@
-<p>especialista works!</p>
+<div class="login-container">
+    <form class="form-container" [formGroup]="form">
+        <div class="input-container">
+            <input type="file" class="input-group-prepend" (change)="onImageSelected($event)" accept="image/*">
+            <img *ngIf="this.form.controls['ImageBase64'].value != ''" [src]="this.form.controls['ImageBase64'].value">
+        </div>
+        <div *ngIf="form.controls['ImageBase64'].errors != null">
+            <small *ngIf="form.controls['ImageBase64'].errors!['required'] && this.touched">¡Requerido!</small>
+        </div>
+        <div style="display: flex;">
+            <div>
+                <div style="display: flex;">
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login-input" placeholder="Nombre" formControlName="nombre">
+                        <div *ngIf="form.controls['nombre'].errors != null">
+                            <small *ngIf="form.controls['nombre'].errors!['required'] && form.controls['nombre'].touched || this.touched">¡Requerido!</small>
+                        </div>
+                    </div>
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login-input" placeholder="Apellido" formControlName="apellido">
+                        <div *ngIf="form.controls['apellido'].errors != null">
+                            <small *ngIf="form.controls['apellido'].errors!['required'] && form.controls['apellido'].touched || this.touched">¡Requerido!</small>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="number" class="login-input" placeholder="Edad" formControlName="edad">
+                        <div *ngIf="form.controls['edad'].errors != null">
+                            <small *ngIf="form.controls['edad'].errors!['required'] && form.controls['edad'].touched || this.touched">¡Requerido!</small>
+                            <small *ngIf="form.controls['edad'].errors['min'] != null && form.controls['edad'].touched || this.touched">¡Min 18!</small>
+                            <small *ngIf="form.controls['edad'].errors['max'] != null && form.controls['edad'].touched || this.touched">¡Max 100!</small>
+                        </div>
+                    </div>
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login-input" placeholder="Dni (Sin puntos)" formControlName="dni">
+                        <div *ngIf="form.controls['dni'].errors != null">
+                            <small *ngIf="form.controls['dni'].errors!['required'] && form.controls['dni'].touched || this.touched">¡Requerido!</small>
+                            <small *ngIf="form.controls['dni'].errors!['pattern'] != null && form.controls['dni'].touched || this.touched">¡Invalido!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex;">
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <select class="login-input" formControlName="especialidad">
+                            <option value="Medico">Médico</option>
+                            <option value="Kinesiologo">Kinesiólogo</option>
+                            <option value="Odontologo">Odontólogo</option>
+                            <option value="Pediatra">Pediatra</option>
+                        </select>
+                        <div *ngIf="form.controls['especialidad'].errors != null">
+                            <small *ngIf="form.controls['especialidad'].errors!['required'] && form.controls['especialidad'].touched || this.touched">¡Requerido!</small>
+                            <small *ngIf="form.controls['especialidad'].errors!['pattern'] != null && form.controls['especialidad'].touched || this.touched">¡Inválido!</small>
+                        </div>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login-input" placeholder="Email" formControlName="email">
+                        <div *ngIf="form.controls['email'].errors != null">
+                            <small *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched || this.touched">¡Requerido!</small>
+                            <small *ngIf="form.controls['email'].errors!['email'] && form.controls['email'].touched || this.touched">¡Invalido!</small>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="login__field" style="margin-right: 20px;">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login-input" placeholder="User name" formControlName="user">
+                        <div *ngIf="form.controls['user'].errors != null">
+                            <small *ngIf="form.controls['user'].errors!['required'] && form.controls['user'].touched || this.touched">¡Requerido!</small>
+                            <small *ngIf="form.controls['user'].errors!['minlength'] && form.controls['user'].touched || this.touched">¡3 caracteres minimo!</small>
+                            <small *ngIf="form.controls['user'].errors!['maxlength'] && form.controls['user'].touched || this.touched">¡15 caracteres maximo!</small>
+                        </div>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" class="login-input" placeholder="Password" formControlName="password">
+                        <div *ngIf="form.controls['password'].errors != null">
+                            <small *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched || this.touched">¡Requerido!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>¿Ya tienes cuenta? <a href="login">Inicia sesion</a></p>
+        <button type="button" class="btn btn-success" style="margin-top: 20px;">
+            <span (click)="onRegisterClick()" class="button__text">Register Now</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+        </button>
+    </form>
+</div>

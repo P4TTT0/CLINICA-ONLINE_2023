@@ -23,9 +23,23 @@
                             contraseña es requerido!</small>
                     </div>
                 </div>
+                <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <button (click)="onFillFields('admin@admin.com', '123456')" type="button" class="user">
+                        <span class="button__text">1</span>
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                    <button (click)="onFillFields('admin@admin.com', '123456')" type="button" class="user">
+                        <span class="button__text">2</span>
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                    <button (click)="onFillFields('admin@admin.com', '123456')" type="button" class="user">
+                        <span class="button__text">3</span>
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                </div>
                 <p>¿No tienes cuenta? <a href="register">Registrate</a></p>
-            <button type="button" class="btn btn-success" style="margin-top: 20px;">
-                <span (click)="OnLoginClick()" class="button__text">Log In Now</span>
+            <button type="button" (click)="OnLoginClick()" class="btn btn-success" style="margin-top: 20px;">
+                <span class="button__text">Log In Now</span>
                 <i class="button__icon fas fa-chevron-right"></i>
             </button>
         </form>

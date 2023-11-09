@@ -1,5 +1,11 @@
 <div class="screen">
     <div class="background">
+        <div style="width: 100%;">
+            <button type="button" (click)="onCreateUserClick()" class="user">
+                <i class="bi bi-plus"></i>
+                <span class="button__text">Crear usuarios</span>
+            </button>
+        </div>
         <div class="users-container">
             <div>
                 <h1>Validar especialistas</h1>
@@ -17,6 +23,9 @@
                             </div>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; padding: 10px;">
+                            <div>
+                                <img [src]="user.ImageBase64">
+                            </div>
                             <div>
                                 <span>NOMBRE: </span>
                                 <span>{{user.Nombre}}</span>

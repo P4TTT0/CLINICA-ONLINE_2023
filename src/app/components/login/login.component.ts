@@ -30,7 +30,7 @@ export class LoginComponent {
       try{
         const credential = await this.auth.logIn(this.form.controls['email'].value, this.form.controls['password'].value);
         let userRol = await this.data.getUserRolByEmailOrUserName(this.form.controls['email'].value);
-        if(userRol == "Especialista")
+        if(userRol != "Admin")
         {
           if(credential?.user?.emailVerified == false)
           {
@@ -42,6 +42,10 @@ export class LoginComponent {
             this.auth.logOut();
             this.loading.hide();
             return;
+          }
+          if(userRol == "Especialista")
+          {
+            this.auth.logueado = false;
           }
         }
         const userUid = credential?.user?.uid || '';
@@ -72,5 +76,11 @@ export class LoginComponent {
       );
     }
     this.loading.hide();
+  }
+
+  public onFillFields(user : string, password : string)
+  {
+    this.form.controls['email'].setValue(user);
+    this.form.controls['password'].setValue(password);
   }
 }

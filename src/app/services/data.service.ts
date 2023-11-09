@@ -128,6 +128,16 @@ export class DataService {
     return userDoc.data();
   }
 
+  public async getJoinDateByUserName(userName : string)
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    let user =  userDoc.data();
+    return user['JoinDate'];
+  }
+
   public async SaveEspecialidad(especialidad : string, userUID : string)
   {
     const userCollection = collection(this.firestore, 'User');

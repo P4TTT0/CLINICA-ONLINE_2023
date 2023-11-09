@@ -1,118 +1,31 @@
 <div class="screen">
-    <div class="login-container" *ngIf="registrado == false">
-        <div class="title-container">
-            <h2>Register</h2>
-            <i class="bi bi-person-circle"></i>
-        </div>
-        <div class="radio-button">
-            <div>
-                <input type="radio" id="especialista-radio" name="radios" [(ngModel)]="tipo" value="Especialista"
-                    checked>
-                <label for="especialista-radio">Especialista</label>
+    <div *ngIf="registrado == false" style="display: flex;">
+        <div class="login-container" style="margin-right: 20px; height: 200px;" >
+            <div class="title-container">
+                <h2>Register</h2>
+                <i class="bi bi-person-circle"></i>
             </div>
-            <div>
-                <input type="radio" id="usuario-radio" name="radios" [(ngModel)]="tipo" value="Usuario">
-                <label for="usuario-radio">Usuario</label>
-            </div>
-            <div>
-                <input type="radio" id="admin-radio" name="radios" [(ngModel)]="tipo" value="Admin">
-                <label for="admin-radio">Admin</label>
-            </div>
-        </div>
-        <form class="form-container" [formGroup]="form">
-            <div style="display: flex;">
+            <div class="radio-button">
                 <div>
-                    <div style="display: flex;">
-                        <div class="login__field" style="margin-right: 20px;">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="email" class="login-input" placeholder="Nombre" formControlName="nombre">
-                            <div *ngIf="form.controls['nombre'].errors != null">
-                                <small *ngIf="form.controls['nombre'].errors!['required'] && form.controls['nombre'].touched">¡Requerido!</small>
-                            </div>
-                        </div>
-                        <div class="login__field" style="margin-right: 20px;">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="email" class="login-input" placeholder="Apellido" formControlName="apellido">
-                            <div *ngIf="form.controls['apellido'].errors != null">
-                                <small *ngIf="form.controls['apellido'].errors!['required'] && form.controls['apellido'].touched">¡Requerido!</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="login__field" style="margin-right: 20px;" [ngClass]="{'edad-admin': this.tipo == 'Admin', 'edad': this.tipo != 'Admin'}">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="number" class="login-input" placeholder="Edad" formControlName="edad">
-                            <div *ngIf="form.controls['edad'].errors != null">
-                                <small *ngIf="form.controls['edad'].errors!['required'] && form.controls['edad'].touched">¡Requerido!</small>
-                                <small *ngIf="form.controls['edad'].errors['min'] != null && form.controls['edad'].touched">¡Min 18!</small>
-                                <small *ngIf="form.controls['edad'].errors['max'] != null && form.controls['edad'].touched">¡Max 100!</small>
-                            </div>
-                        </div>
-                        <div *ngIf="this.tipo != 'Admin'">
-                            <div *ngIf="this.tipo == 'Usuario' ; else elseBlock">
-                                <div class="login__field" style="margin-right: 20px;">
-                                    <i class="login__icon fas fa-user"></i>
-                                    <input type="email" class="login-input" placeholder="Dni (Sin puntos)" formControlName="dni">
-                                    <div *ngIf="form.controls['dni'].errors != null">
-                                        <small *ngIf="form.controls['dni'].errors!['required'] && form.controls['dni'].touched">¡Requerido!</small>
-                                        <small *ngIf="form.controls['dni'].errors!['pattern'] != null && form.controls['dni'].touched">¡Invalido!</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <ng-template #elseBlock>
-                                <div class="login__field" style="margin-right: 20px;">
-                                    <i class="login__icon fas fa-user"></i>
-                                    <select class="login-input" formControlName="especialidad">
-                                        <option value="Medico">Médico</option>
-                                        <option value="Kinesiologo">Kinesiólogo</option>
-                                        <option value="Odontologo">Odontólogo</option>
-                                        <option value="Pediatra">Pediatra</option>
-                                    </select>
-                                    <div *ngIf="form.controls['especialidad'].errors != null">
-                                        <small *ngIf="form.controls['especialidad'].errors!['required'] && form.controls['especialidad'].touched">¡Requerido!</small>
-                                        <small *ngIf="form.controls['especialidad'].errors!['pattern'] != null && form.controls['especialidad'].touched">¡Inválido!</small>
-                                    </div>
-                                </div>
-                                
-                            </ng-template>
-                        </div>
-                    </div>
+                    <input type="radio" id="especialista-radio" name="radios" [(ngModel)]="tipo" value="Especialista"
+                        checked>
+                    <label for="especialista-radio">Especialista</label>
                 </div>
                 <div>
-                    <div class="login__field">
-                        <i class="login__icon fas fa-user"></i>
-                        <input type="email" class="login-input" placeholder="Email" formControlName="email">
-                        <div *ngIf="form.controls['email'].errors != null">
-                            <small *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched">¡Requerido!</small>
-                            <small *ngIf="form.controls['email'].errors!['email'] && form.controls['email'].touched">¡Invalido!</small>
-                        </div>
-                    </div>
-                    <div style="display: flex;">
-                        <div class="login__field" style="margin-right: 20px;">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="email" class="login-input" placeholder="User name" formControlName="user">
-                            <div *ngIf="form.controls['user'].errors != null">
-                                <small *ngIf="form.controls['user'].errors!['required'] && form.controls['user'].touched">¡Requerido!</small>
-                                <small *ngIf="form.controls['user'].errors!['minlength'] && form.controls['user'].touched">¡3 caracteres minimo!</small>
-                                <small *ngIf="form.controls['user'].errors!['maxlength'] && form.controls['user'].touched">¡15 caracteres maximo!</small>
-                            </div>
-                        </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
-                            <input type="password" class="login-input" placeholder="Password" formControlName="password">
-                            <div *ngIf="form.controls['password'].errors != null">
-                                <small *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡Requerido!</small>
-                            </div>
-                        </div>
-                    </div>
+                    <input type="radio" id="usuario-radio" name="radios" [(ngModel)]="tipo" value="Usuario">
+                    <label for="usuario-radio">Usuario</label>
+                </div>
+                <div *ngIf="this.auth.rol == 'Admin'">
+                    <input type="radio" id="admin-radio" name="radios" [(ngModel)]="tipo" value="Admin">
+                    <label for="admin-radio">Admin</label>
                 </div>
             </div>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="login">Inicia sesion</a></p>
-        <button type="button" class="btn btn-success" style="margin-top: 20px;">
-            <span (click)="onRegisterClick()" class="button__text">Register Now</span>
-            <i class="button__icon fas fa-chevron-right"></i>
-        </button>
+        </div>
+        <div>
+            <app-user *ngIf="this.tipo == 'Usuario'" (registrado)="recibirRegistro($event)"></app-user>
+            <app-especialista *ngIf="this.tipo == 'Especialista'" (registrado)="recibirRegistro($event)"></app-especialista>
+            <app-admin *ngIf="this.tipo == 'Admin'"></app-admin>
+        </div>
     </div>
     <app-email-validate *ngIf="registrado"></app-email-validate>
 </div>

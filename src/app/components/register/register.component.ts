@@ -17,7 +17,7 @@ export class RegisterComponent {
   public tipo : string = "Usuario";
   public registrado : boolean = false;
 
-  constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
+  constructor(private router: Router, private formBuilder : FormBuilder, public auth : AuthService, private data : DataService, private loading : LoadingService) {
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
@@ -128,5 +128,10 @@ export class RegisterComponent {
     }
 
     return true;
+  }
+
+  public recibirRegistro(registrado : boolean)
+  {
+    this.registrado = registrado;
   }
 }

@@ -13,7 +13,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home</a>
         </li>
-        <div class="login-container">
+        <div class="login-container" *ngIf="this.auth.userName == ''">
           <i class="bi bi-person-circle"></i>
           <li class="nav-item">
             <a class="nav-link" href="login">Login</a>
@@ -22,8 +22,21 @@
             <a class="nav-link" href="register">Register</a>
           </li>
         </div>
+        <div class="login-container" *ngIf="this.auth.userName.length > 1">
+          <i class="bi bi-person-circle"></i>
+          <span>@{{this.auth.userName}}</span>
+        </div>
+        <li class="nav-item" *ngIf="this.auth.rol == 'Admin'">
+          <a class="nav-link" href="user-validation">Usuarios</a>
+        </li>
       </ul>
     </div>
+    <div>
+      <button type="button" (click)="OnLogOutClick()" class="btn">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+
   </nav>
   <router-outlet></router-outlet>
 </div>
