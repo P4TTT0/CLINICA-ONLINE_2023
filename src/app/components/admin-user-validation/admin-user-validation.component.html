@@ -43,13 +43,52 @@
                                 <span>{{user.DNI}}</span>
                             </div>
                         </div>
-                        <div style="width: 100%; display: flex;">
-                            <button type="button" style="margin-right: 20px; width: 100%; " class="btn btn-light button-option button-reject" (click)="onDecideClick(false, user.UserName)">
-                                <i class="bi bi-x"></i>
-                            </button>
+                        <div style="width: 100%; display: flex;" *ngIf="user.Validated == null else elseBlock">
                             <button type="button" style="width: 100%;" class="btn btn-light button-option button-accept" (click)="onDecideClick(true, user.UserName)">
                                 <i class="bi bi-check"></i>
                             </button>
+                        </div>
+                        <ng-template #elseBlock>
+                            <div style="width: 100%; text-align: center;">
+                                <span style="background-color: rgba(85, 159, 85, 0.595); padding: 5px; border-radius: 20px;">ACEPTADO</span>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="users-container">
+            <div>
+                <h1>Usuarios</h1>
+            </div>
+            <div class="users">
+                <div class="user-container" *ngFor="let user of this.users">
+                    <div style="display: flex; flex-direction: column; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; background-color: #32303388; padding: 5px; margin-bottom: 10px;">          
+                            <div>
+                                <span>@{{user.UserName}}</span>
+                            </div>
+                            <div>
+                                <span>Solicitud: </span>
+                                <span>{{user.JoinDate.toDate() | date: 'dd/MM/yyyy HH:mm'}}</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; padding: 10px;">
+                            <div>
+                                <img [src]="user.ImageBase64">
+                            </div>
+                            <div>
+                                <span>NOMBRE: </span>
+                                <span>{{user.Nombre}}</span>
+                            </div>
+                            <div>
+                                <SPAN>APELLIDO: </SPAN>
+                                <span>{{user.Apellido}}</span>
+                            </div>
+                            <div>
+                                <span>DNI: </span>
+                                <span>{{user.DNI}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

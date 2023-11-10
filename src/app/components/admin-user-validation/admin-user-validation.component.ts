@@ -12,12 +12,14 @@ import { Router } from '@angular/router';
 export class AdminUserValidationComponent implements OnInit{
   
   public usersNotAccepted : any[] = [];
+  public users : any[] = [];
 
   constructor(public data : DataService, private dialog: MatDialog, private router : Router) { }
 
   async ngOnInit() 
   {
     this.usersNotAccepted = await this.data.GetUsersNotAccepted();
+    this.users = await this.data.GetUsuarios();
   }
 
   public async onDecideClick(validation : boolean, userName : string)

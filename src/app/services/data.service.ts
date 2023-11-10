@@ -106,7 +106,23 @@ export class DataService {
 
   public async GetUsersNotAccepted(): Promise<any | null> {
     const userCollection = collection(this.firestore, 'User');
-    const q = query(userCollection, where('Validated', '==', null), where('Rol', '==', 'Especialista'));
+    const q = query(userCollection, where('Rol', '==', 'Especialista'));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
+  }
+
+  public async GetUsuarios() : Promise<any | null> 
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Usuario'));
     const querySnapshot = await getDocs(q);
   
     if (querySnapshot.empty) 

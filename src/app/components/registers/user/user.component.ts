@@ -60,6 +60,7 @@ export class UserComponent {
         Rol : 'Usuario',
         UserName : this.form.controls['user'].value,
         Validated : null,
+        DNI: this.form.controls['dni'].value,
         Nombre : this.form.controls['nombre'].value,
         ObraSocial : this.form.controls['obraSocial'].value,
         Apellido : this.form.controls['apellido'].value,
