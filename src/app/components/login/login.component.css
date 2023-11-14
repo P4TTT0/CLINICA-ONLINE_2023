@@ -26,6 +26,41 @@
     }
 }
 
+.fab-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 20px; 
+  }
+  
+  .fab-options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform: translateY(100%);
+    transition: transform 1s ease, opacity 0.3s ease;
+  }
+  
+  .fab-options.visible {
+    transform: translateY(-120%);
+  }
+
+  .role-text {
+    position: absolute;
+    top: 50%;
+    right: -150%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.3s ease 0.3s; 
+    white-space: nowrap;
+  }
+  
+  
+  .role-text.visible {
+    left: 130%;
+    opacity: 1;
+  }
 .user
 {
     border: none;
@@ -60,4 +95,15 @@
     padding: 30px;
     border-radius: 0px;
     box-shadow: 10px 10px 0px 0px #7E7D7F;
+}
+
+.fab-button img
+{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.fab
+{
+  background-color: #474448;
 }

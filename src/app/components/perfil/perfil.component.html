@@ -1,0 +1,57 @@
+<div class="row background" *ngIf="this.user != null">
+    <div class="col-md-4">
+        <div class="row aside">
+            <div class="col-md-12 item">
+                <span>@{{this.auth.userName}}</span>
+            </div>
+            <div class="col-md-12 item">
+                <img class="image-profile" [src]="this.user.ImageBase64">
+            </div>
+            <div class="col-md-12 item" *ngIf="this.auth.rol == 'Usuario'">
+                <img class="image-profile" [src]="this.user.ImageBaseTwo64">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="row body">
+            <div class="col-md-12 name">
+                <div>
+                    <span><b>{{this.user.Apellido}},</b></span>
+                    <span><b> {{this.user.Nombre}}</b></span>
+                </div>
+                <b><i class="bi bi-person"></i></b>
+            </div>
+            <div class="col-md-12">
+                <span>Correo electronico:</span>
+                <span> {{this.user.Email}}</span>
+            </div>
+            <div class="col-md-12">
+                <span>DNI:</span>
+                <span> {{this.user.DNI}}</span>
+            </div>
+            <div class="col-md-12">
+                <span>Fecha de creación de cuenta: </span>
+                <span> {{this.user.JoinDate.toDate() | date: 'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+            <div class="col-md-12" *ngIf="this.auth.rol == 'Usuario'">
+                <span>Obra social: </span>
+                <span> {{this.user.ObraSocial}}</span>
+            </div>
+            <div *ngIf="this.auth.rol == 'Especialista'">
+                <div class="col-md-12 name">
+                    <div>
+                        <span><b>Mis horarios</b></span>
+                    </div>
+                    <b><i class="bi bi-alarm"></i></b>
+                </div>
+                <div class="col-md-12">
+                    <div class="checkbox-group">
+                        <label class="custom-checkbox" [class.selected]="this.isMananaSelected" (click)="toggleSelection('mañana')">MAÑANA</label>
+                        <label class="custom-checkbox" [class.selected]="this.isTardeSelected" (click)="toggleSelection('tarde')">TARDE</label>
+                        <label class="custom-checkbox" [class.selected]="this.isNocheSelected" (click)="toggleSelection('noche')">NOCHE</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

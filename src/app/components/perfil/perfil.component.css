@@ -1,0 +1,82 @@
+.aside
+{
+    background-color: #474448;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0px 0px 40px 0px;
+}
+
+.image-profile
+{
+    width: 200px;
+}
+
+.background
+{
+    height: 91vh;
+    width: 100%;
+}
+
+div
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.item
+{
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+img
+{
+    border-radius: 20px;
+}
+
+.name
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 40px;
+}
+
+.body
+{
+    padding: 30px;
+    font-size: 20px;
+}
+
+.custom-checkbox {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #47444830;
+    color: rgb(196, 196, 196); 
+  }
+  
+  .custom-checkbox.selected {
+    background-color: #474448; 
+    color: rgb(196, 196, 196); 
+  }
+  
+  .custom-checkbox:hover {
+    background-color: #f0f0f0; 
+  }
+
+.checkbox-group
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+  

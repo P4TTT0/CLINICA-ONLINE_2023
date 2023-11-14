@@ -24,4 +24,9 @@ export class AppComponent implements OnInit {
     this.auth.logOut();
     this.router.navigateByUrl('home');
   }
+
+  public onProfileClick()
+  {
+    this.router.navigateByUrl('profile');
+  }
 }

@@ -22,7 +22,7 @@
             <a class="nav-link" href="register">Register</a>
           </li>
         </div>
-        <div class="login-container" *ngIf="this.auth.userName.length > 1">
+        <div class="login-container" *ngIf="this.auth.userName.length > 1" (click)="onProfileClick()">
           <i class="bi bi-person-circle"></i>
           <span>@{{this.auth.userName}}</span>
         </div>

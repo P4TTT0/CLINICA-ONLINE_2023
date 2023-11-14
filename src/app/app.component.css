@@ -17,10 +17,18 @@
     background-color: #34323570;
     padding: 0px 20px;
     border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
     .bi-person-circle
     {
         margin-right: 10px;
     }
+}
+
+.login-container:hover
+{
+    background-color: #34323536;
+    transform: scale(1.03);
 }
 
 .loading-overlay {

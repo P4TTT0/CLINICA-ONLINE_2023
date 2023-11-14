@@ -23,6 +23,10 @@ import { AdminComponent } from './components/registers/admin/admin.component';
 import { NoValidatedComponent } from './components/no-validated/no-validated.component';
 import { HomeComponent } from './components/home/home.component';
 import { SeleccionarEspecialidadComponent } from './components/registers/especialista/seleccionar-especialidad/seleccionar-especialidad.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +42,15 @@ import { SeleccionarEspecialidadComponent } from './components/registers/especia
     NoValidatedComponent,
     HomeComponent,
     SeleccionarEspecialidadComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatDialogModule,
+    MatIconModule,
+    MatDividerModule,
+    MatButtonModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

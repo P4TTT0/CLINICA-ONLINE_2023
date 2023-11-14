@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,14 +12,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public form : FormGroup;
+  public users : any;
+  public showRole: string = '';
+  public user : any;
 
   constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
     this.form = this.formBuilder.group({
       email: ['',[ Validators.required]],
       password: ['', [Validators.required]]
     });
+  }
+
+  async ngOnInit()
+  {
+    this.users = await this.data.GetUsersToFab();
+    console.log(this.users);
   }
 
   public async OnLoginClick()
@@ -30,7 +39,11 @@ export class LoginComponent {
       try{
         const credential = await this.auth.logIn(this.form.controls['email'].value, this.form.controls['password'].value);
         let userRol = await this.data.getUserRolByEmailOrUserName(this.form.controls['email'].value);
-        if(userRol != "Admin")
+        const userUid = credential?.user?.uid || '';
+        const userName = await this.data.getUserNameByUID(userUid);
+        this.user = await this.data.getUserByUserName(userName);
+        console.log(this.user.Fab);
+        if(this.user.Fab == false)
         {
           if(credential?.user?.emailVerified == false)
           {
@@ -48,8 +61,6 @@ export class LoginComponent {
             this.auth.logueado = false;
           }
         }
-        const userUid = credential?.user?.uid || '';
-        const userName = await this.data.getUserNameByUID(userUid);
         Swal.fire(
           '¡EXITO!',
           '¡Inicio de sesion exitoso!',
@@ -78,9 +89,20 @@ export class LoginComponent {
     this.loading.hide();
   }
 
-  public onFillFields(user : string, password : string)
+  public onFillFields(user : any)
   {
-    this.form.controls['email'].setValue(user);
-    this.form.controls['password'].setValue(password);
+    this.form.controls['email'].setValue(user.UserName);
+    this.form.controls['password'].setValue('123456');
+  }
+
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  performAction(action: string) {
+    console.log('Action performed:', action);
+    this.menuOpen = false;
   }
 }

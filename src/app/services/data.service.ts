@@ -90,6 +90,13 @@ export class DataService {
     });
   }
 
+  public async UpdateHoursEspecialist(userUID: string, hours : any): Promise<void> {
+    const userCollection = collection(this.firestore, 'User');
+    const docRef = doc(userCollection, userUID);
+
+    await updateDoc(docRef, hours);
+  }
+
   public async getUIDByUserName(userName: string)
   {
     const userCollection = collection(this.firestore, 'User');
@@ -107,6 +114,21 @@ export class DataService {
   public async GetUsersNotAccepted(): Promise<any | null> {
     const userCollection = collection(this.firestore, 'User');
     const q = query(userCollection, where('Rol', '==', 'Especialista'));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
+  }
+
+  public async GetUsersToFab(): Promise<any | null> {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Fab', '==', true), orderBy('Rol', 'asc'));
     const querySnapshot = await getDocs(q);
   
     if (querySnapshot.empty) 
