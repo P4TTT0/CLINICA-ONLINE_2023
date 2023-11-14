@@ -1,0 +1,61 @@
+<div class="background">
+    <div class="info-container">
+        <div class="row">
+            <div class="col-md-12 text">
+                <span><b>Especialidad</b></span>
+            </div>
+        </div>
+        <div class="row especialidad">
+            <div *ngFor="let especialidad of this.especialidades" class="radio-button col-md-2 col-sm-4">
+                <input type="radio" [id]="especialidad.Nombre" name="radios" [value]="especialidad.Nombre" [(ngModel)]="this.especialidadSeleccionada" (change)="onEspecialidadChange()" checked>
+                <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="row">
+            <div class="col-md-12 text">
+                <span><b>Especialista</b></span>
+            </div>
+        </div>
+        <div class="row especialidad">
+            <div *ngFor="let especialidad of this.especialistas" class="radio-button col-md-2 col-sm-4">
+                <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado" (change)="onEspecialistaChange()"  checked>
+                <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="row">
+            <div class="col-md-12 text">
+                <span><b>Días</b></span>
+            </div>
+        </div>
+        <div class="row especialidad">
+            <div class="radio-button col-md-3 col-sm-4" [ngClass]="{'ocupado': day.ocupado}" *ngFor="let day of this.daysArray">
+                <input type="radio" [id]="day.day" name="radio-day" [disabled]="day.ocupado" [value]="day" [(ngModel)]="this.daySeleccionado" (change)="onDayChange(day)" checked>
+                <label [for]="day.day">{{day.year}} {{day.monthText}} {{day.day}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="row">
+            <div class="col-md-12 text">
+                <span><b>Horarios</b></span>
+            </div>
+        </div>
+        <div class="row especialidad">
+            <div class="radio-button col-md-1 col-sm-2" [ngClass]="{'ocupado': hour.checked}" *ngFor="let hour of this.filteredTimes">
+                <input type="radio" [id]="hour.time" name="radio-hour" [value]="hour.time" [disabled]="hour.checked" [(ngModel)]="this.horaSeleccionada" checked>
+                <label [for]="hour.time">{{hour.time}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="solicitar" [disabled]="!(this.especialidadSeleccionada != null && this.especialistaSeleccionado != null && this.horaSeleccionada != null && this.daySeleccionado != null)" (click)="onSolicitarTurnoClick()">
+                <span>Solicitar turno</span>
+            </button>
+        </div>
+    </div>
+</div>

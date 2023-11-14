@@ -27,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     HomeComponent,
     SeleccionarEspecialidadComponent,
     PerfilComponent,
+    SolicitarTurnoComponent,
   ],
   imports: [
     BrowserModule,

@@ -157,6 +157,76 @@ export class DataService {
     return users;
   }
 
+  public async GetEspecialistas(especialidad : string) : Promise<any | null> 
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Especialista'), where('Especialidad', '==', especialidad));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
+  }
+
+  public async IsDayOccupied(especialidad : string, especialista : string, day : any, month : any, year : any)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Especialidad', '==', especialidad), where('Especialista', '==', especialista), where('Dia', '==', day), where('Mes', '==', month), where('Año', '==', year));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
+  public async IsHourOcuppied(especialidad : string, especialista : string, day : any, month : any, year : any, hour : any)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Especialidad', '==', especialidad), where('Especialista', '==', especialista), where('Dia', '==', day), where('Mes', '==', month), where('Año', '==', year), where('Horario', '==', hour));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
+  public async GetEspecialidades() : Promise<any | null> 
+  {
+    const userCollection = collection(this.firestore, 'Especialidades');
+    const q = query(userCollection);
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const especialidades = querySnapshot.docs.map(doc => doc.data());
+
+    return especialidades;
+  }
+
+  public SaveTurno(turno : any)
+  {
+    const col = collection(this.firestore, 'Turno');
+    addDoc(col, turno);
+  }
+
   public async getUserByUserName(userName : string)
   {
     const userCollection = collection(this.firestore, 'User');

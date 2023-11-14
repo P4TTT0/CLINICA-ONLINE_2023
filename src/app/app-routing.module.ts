@@ -6,6 +6,7 @@ import { AdminUserValidationComponent } from './components/admin-user-validation
 import { HomeComponent } from './components/home/home.component';
 import { adminGuard } from './guards/admin.guard';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "user-validation", component: AdminUserValidationComponent, canActivate: [adminGuard]},
   {path: "home", component: HomeComponent},
-  {path: "profile", component: PerfilComponent} 
+  {path: "profile", component: PerfilComponent},
+  {path: "solicitar-turno", component: SolicitarTurnoComponent}
 ];
 
 @NgModule({

@@ -29,6 +29,9 @@
         <li class="nav-item" *ngIf="this.auth.rol == 'Admin'">
           <a class="nav-link" href="user-validation">Usuarios</a>
         </li>
+        <li class="nav-item" *ngIf="this.auth.userName.length > 1">
+          <a class="nav-link" href="solicitar-turno">Turnos</a>
+        </li>
       </ul>
     </div>
     <div *ngIf="this.auth.userName.length > 1">
