@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { adminGuard } from './guards/admin.guard';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
+import { VisualizarTurnoComponent } from './components/visualizar-turno/visualizar-turno.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: "user-validation", component: AdminUserValidationComponent, canActivate: [adminGuard]},
   {path: "home", component: HomeComponent},
   {path: "profile", component: PerfilComponent},
-  {path: "solicitar-turno", component: SolicitarTurnoComponent}
+  {path: "solicitar-turno", component: SolicitarTurnoComponent},
+  {path: "ver-turnos", component: VisualizarTurnoComponent},
 ];
 
 @NgModule({

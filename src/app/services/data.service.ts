@@ -126,6 +126,48 @@ export class DataService {
     return users;
   }
 
+  public async getTurnoIdByDateTime(date : any, time : any)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const querySnapshot = await getDocs(query(userCollection, where('Dia', '==', date.day), where('Mes', '==', date.monthText), where('Año', '==', date.year), where('Horario', '==', time)));
+    
+    if (querySnapshot.size === 0) {
+      return null;
+    }
+    
+    const userDoc = querySnapshot.docs[0];
+    const userUID = userDoc.id;
+    return userUID;
+  }
+
+  public async cancelTurno(id : any, mensaje : string)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const docRef = doc(userCollection, id);
+
+    await updateDoc(docRef, {
+      Estad: 'cancelado',
+      Mensaje: mensaje,
+    });
+  }
+
+  public async getTurnosByUserName(userName : string): Promise<any | null> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Paciente', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
+  }
+
+
+
   public async GetUsersToFab(): Promise<any | null> {
     const userCollection = collection(this.firestore, 'User');
     const q = query(userCollection, where('Fab', '==', true), orderBy('Rol', 'asc'));

@@ -28,6 +28,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
+import { VisualizarTurnoComponent } from './components/visualizar-turno/visualizar-turno.component';
+import { CancelarTurnoComponent } from './components/turnos/cancelar-turno/cancelar-turno.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-
     SeleccionarEspecialidadComponent,
     PerfilComponent,
     SolicitarTurnoComponent,
+    VisualizarTurnoComponent,
+    CancelarTurnoComponent,
   ],
   imports: [
     BrowserModule,
