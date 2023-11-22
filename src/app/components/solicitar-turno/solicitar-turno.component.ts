@@ -35,17 +35,24 @@ export class SolicitarTurnoComponent implements OnInit {
     this.especialistas = await this.data.GetEspecialistas(this.especialidadSeleccionada);
   }
   
-  public async onEspecialistaChange()
+  public async onEspecialistaChange(especialista : any)
   {
     this.daysArray = [];
-    const today = new Date();
-    let todayInfo =  await this.getDayInfo(today)
-    this.daysArray.push(todayInfo);
-    for (let i = 1; i <= 15; i++) {
+    let diasAGenerar = 15;
+    for (let i = 0; i < diasAGenerar; i++) {
+      const today = new Date();
       const nextDay = new Date();
       nextDay.setDate(today.getDate() + i);
-      let dayInfo = await this.getDayInfo(nextDay)
-      this.daysArray.push(dayInfo);
+      console.log(!(especialista.HorarioTarde && especialista.HorarioMañana == false && nextDay.getDay() == 6));
+      if(nextDay.getDay() != 0 && !(especialista.HorarioTarde && especialista.HorarioMañana == false && nextDay.getDay() == 6))
+      {
+        let dayInfo = await this.getDayInfo(nextDay)
+        this.daysArray.push(dayInfo);
+      }
+      else
+      {
+        diasAGenerar++;
+      }
     }
   }
   
@@ -53,7 +60,7 @@ export class SolicitarTurnoComponent implements OnInit {
   {
     this.loading.show();
     this.horaSeleccionada = null;
-    this.filteredTimes = await this.generateTimeArray(this.especialidadSeleccionada, this.especialistaSeleccionado, day.day, day.monthText, day.year);
+    this.filteredTimes = await this.generateTimeArray(this.especialidadSeleccionada, this.especialistaSeleccionado, day);
     this.loading.hide();
   }
 
@@ -72,6 +79,7 @@ export class SolicitarTurnoComponent implements OnInit {
   
     return {
       day: day,
+      dayText: date.toDateString().split(' ')[0],
       month: month,
       year: year,
       monthText: monthName,
@@ -111,20 +119,28 @@ export class SolicitarTurnoComponent implements OnInit {
     }
   }
 
-  public async generateTimeArray(especialidad : string, especialista : any, day : any, month : any, year : any) {
+  public async generateTimeArray(especialidad : string, especialista : any, date : any) {
     const times = [];
-  
-    for (let hour = 8; hour <= 24; hour++) {
+    
+    for (let hour = 8; hour <= 19; hour++) {
       for (let minute = 0; minute < 60; minute += 30) {
         const time = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-  
-        const isAvailable =
-          (especialista.HorarioMañana && hour >= 8 && hour <= 12) ||
-          (especialista.HorarioTarde && ((hour === 12 && minute >= 30) || (hour > 12 && hour < 18) || (hour === 18 && minute <= 30))) ||
-          (especialista.HorarioNoche && (hour >= 19 || (hour === 18 && minute >= 30)));
+
+        let isAvailable : any;
+
+        if(date.dayText == 'Sat')
+        {
+          isAvailable = (especialista.HorarioMañana && hour >= 8 && hour <= 13);
+        }
+        else
+        {
+          isAvailable =
+            (especialista.HorarioMañana && hour >= 8 && hour <= 13) ||
+            (especialista.HorarioTarde && ((hour > 13 && hour < 19) || (hour === 18 && minute <= 30)));
+        }
   
         if (isAvailable) {
-          const isOccupied = await this.data.IsHourOcuppied(especialidad, especialista.Nombre, day, month, year, time);
+          const isOccupied = await this.data.IsHourOcuppied(especialidad, especialista.Nombre, date.day, date.monthText, date.year, time);
           const timeObject = {
             time: time,
             checked: isOccupied,

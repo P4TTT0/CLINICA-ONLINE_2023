@@ -20,7 +20,7 @@
         </div>
         <div class="row especialidad">
             <div *ngFor="let especialidad of this.especialistas" class="radio-button col-md-2 col-sm-4">
-                <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado" (change)="onEspecialistaChange()"  checked>
+                <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado" (change)="onEspecialistaChange(especialidad)"  checked>
                 <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
             </div>
         </div>
