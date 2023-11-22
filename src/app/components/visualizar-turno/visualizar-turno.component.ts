@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { NgbRatingConfig, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-visualizar-turno',
@@ -13,6 +14,7 @@ export class VisualizarTurnoComponent {
 
   public especialistaSeleccionado : any;
   public especialidadSeleccionada : any;
+  public ratingSeleccionado : number = 0;
 
   public turnos : any;
 
@@ -21,7 +23,10 @@ export class VisualizarTurnoComponent {
 
   public fechaTurno! : string
 
-  constructor(private data : DataService, private auth : AuthService) {}
+  constructor(private data : DataService, private auth : AuthService, private config : NgbRatingConfig) 
+  {
+    config.max = 5;
+  }
 
   async ngOnInit()
   {
@@ -31,6 +36,7 @@ export class VisualizarTurnoComponent {
     this.turnos = await this.data.getTurnosByUserName(this.auth.userName);
     this.turnosFiltrados = this.turnos;
     console.log(this.turnos);
+    console.log(this.turnosFiltrados);
   }
   
   public async onEspecialidadChange(especialidad : any)
@@ -42,6 +48,20 @@ export class VisualizarTurnoComponent {
   public async onEspecialistaChange(especialista : any)
   {
     this.turnosFiltrados = this.turnos.filter((turno: { Especialista: any; Especialidad : any;}) => turno.Especialista == especialista && turno.Especialidad == this.especialidadSeleccionada);
+  }
+
+  public async onRatingClick(turno : any)
+  {
+    console.log(this.ratingSeleccionado);
+    console.log(turno);
+    let date = 
+    {
+      day: turno.Dia,
+      monthText: turno.Mes,
+      year: turno.Año
+    }
+    let turnoId = await this.data.getTurnoIdByDateTime(date, turno.Horario);
+    await this.data.updateRatingTurnoByTurnoId(turnoId, turno.Rating);
   }
 
   public onCancelClick(turno : any)

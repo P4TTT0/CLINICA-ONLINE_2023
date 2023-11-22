@@ -30,6 +30,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 import { VisualizarTurnoComponent } from './components/visualizar-turno/visualizar-turno.component';
 import { CancelarTurnoComponent } from './components/turnos/cancelar-turno/cancelar-turno.component';
+import { NgbRatingModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,12 +58,14 @@ import { CancelarTurnoComponent } from './components/turnos/cancelar-turno/cance
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
+    NgbRatingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}, DatePipe],
   bootstrap: [AppComponent]

@@ -40,6 +40,7 @@
                     <div class="info">
                         <span>{{turno.Especialidad}}</span>
                         <div>
+                            <ngb-rating [(rate)]="turno.Rating" (click)="onRatingClick(turno)"></ngb-rating>
                             <button class="button-cancel" (click)="onCancelClick(turno)" *ngIf="turno.Estad != 'cancelado'">
                                 <i class="bi bi-x-lg"></i>
                             </button>

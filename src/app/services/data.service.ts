@@ -151,6 +151,16 @@ export class DataService {
     });
   }
 
+  public async updateRatingTurnoByTurnoId(id : any, rating : string)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const docRef = doc(userCollection, id);
+
+    await updateDoc(docRef, {
+      Rating: rating,
+    });
+  }
+
   public async getTurnosByUserName(userName : string): Promise<any | null> {
     const userCollection = collection(this.firestore, 'Turno');
     const q = query(userCollection, where('Paciente', '==', userName));
