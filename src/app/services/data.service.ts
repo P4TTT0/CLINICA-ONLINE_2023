@@ -151,13 +151,14 @@ export class DataService {
     });
   }
 
-  public async updateRatingTurnoByTurnoId(id : any, rating : string)
+  public async updateRatingTurnoByTurnoId(id : any, rating : string, opinion : string)
   {
     const userCollection = collection(this.firestore, 'Turno');
     const docRef = doc(userCollection, id);
 
     await updateDoc(docRef, {
       Rating: rating,
+      Opinion: opinion
     });
   }
 

@@ -40,7 +40,9 @@
                     <div class="info">
                         <span>{{turno.Especialidad}}</span>
                         <div>
-                            <ngb-rating [(rate)]="turno.Rating" (click)="onRatingClick(turno)"></ngb-rating>
+                            <button class="button-star" (click)="onRateTurnoClick(turno)">
+                                <i class="bi bi-star"></i>
+                            </button>
                             <button class="button-cancel" (click)="onCancelClick(turno)" *ngIf="turno.Estad != 'cancelado'">
                                 <i class="bi bi-x-lg"></i>
                             </button>
@@ -63,6 +65,7 @@
     </div>
     <div class="col-md-5"> 
         <app-cancelar-turno [turno]="fechaTurno" (close)="onCancelTurnoDismiss($event)" *ngIf="this.viewCancel"></app-cancelar-turno>
+        <app-rate-turno [turno]="fechaTurno" (close)="onRateTurnoDismiss()" *ngIf="this.viewRate"></app-rate-turno>
     </div>
 </div>
 

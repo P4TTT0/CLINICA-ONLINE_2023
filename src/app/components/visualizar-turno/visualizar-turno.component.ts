@@ -20,6 +20,7 @@ export class VisualizarTurnoComponent {
 
   public turnosFiltrados : any;
   public viewCancel : boolean = false;
+  public viewRate : boolean = false;
 
   public fechaTurno! : string
 
@@ -50,23 +51,15 @@ export class VisualizarTurnoComponent {
     this.turnosFiltrados = this.turnos.filter((turno: { Especialista: any; Especialidad : any;}) => turno.Especialista == especialista && turno.Especialidad == this.especialidadSeleccionada);
   }
 
-  public async onRatingClick(turno : any)
-  {
-    console.log(this.ratingSeleccionado);
-    console.log(turno);
-    let date = 
-    {
-      day: turno.Dia,
-      monthText: turno.Mes,
-      year: turno.Año
-    }
-    let turnoId = await this.data.getTurnoIdByDateTime(date, turno.Horario);
-    await this.data.updateRatingTurnoByTurnoId(turnoId, turno.Rating);
-  }
-
   public onCancelClick(turno : any)
   {
     this.viewCancel = true;
+    this.fechaTurno = turno;
+  }
+
+  public onRateTurnoClick(turno : any)
+  {
+    this.viewRate = true;
     this.fechaTurno = turno;
   }
 
@@ -88,5 +81,10 @@ export class VisualizarTurnoComponent {
         }
       }
     }
+  }
+
+  public onRateTurnoDismiss()
+  {
+    this.viewRate = false;
   }
 }
