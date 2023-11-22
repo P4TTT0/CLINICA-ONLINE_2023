@@ -34,6 +34,9 @@ import { NgbRatingModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RateTurnoComponent } from './components/turnos/rate-turno/rate-turno.component';
 import { EncuestaComponent } from './components/turnos/encuesta/encuesta.component';
 import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-turnos-especialista/visualizar-turnos-especialista.component';
+import { RechazarComponent } from './components/turnos/rechazar/rechazar.component';
+import { FinishComponent } from './components/turnos/finish/finish.component';
+import { VisualizarReseniaComponent } from './components/visualizar-resenia/visualizar-resenia.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-t
     RateTurnoComponent,
     EncuestaComponent,
     VisualizarTurnosEspecialistaComponent,
+    RechazarComponent,
+    FinishComponent,
+    VisualizarReseniaComponent,
   ],
   imports: [
     BrowserModule,

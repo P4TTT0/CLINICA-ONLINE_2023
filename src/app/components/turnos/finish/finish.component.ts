@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-cancelar-turno',
-  templateUrl: './cancelar-turno.component.html',
-  styleUrls: ['./cancelar-turno.component.css']
+  selector: 'app-finish',
+  templateUrl: './finish.component.html',
+  styleUrls: ['./finish.component.css']
 })
-export class CancelarTurnoComponent {
+export class FinishComponent {
 
   @Input() turno : any;
   @Output() close = new EventEmitter<boolean>();
@@ -14,7 +14,7 @@ export class CancelarTurnoComponent {
 
   constructor(private data : DataService) {}
 
-  public async onCancelClick()
+  public async onFinishClick()
   {
     let turnoFecha = 
     {
@@ -23,12 +23,12 @@ export class CancelarTurnoComponent {
       year: this.turno['Año']
     }
     let idTurno = await this.data.getTurnoIdByDateTime(turnoFecha, this.turno.Horario) || '';
-    this.data.updateEstadoTurno(idTurno, this.text, 'cancelado');
-    this.close.emit(true);
+    this.data.updateEstadoTurno(idTurno, this.text, 'finalizado');
+    this.close.emit();
   }
 
   public onDismiss()
   {
-    this.close.emit(false);
+    this.close.emit();
   }
 }

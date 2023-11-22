@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-cancelar-turno',
-  templateUrl: './cancelar-turno.component.html',
-  styleUrls: ['./cancelar-turno.component.css']
+  selector: 'app-rechazar',
+  templateUrl: './rechazar.component.html',
+  styleUrls: ['./rechazar.component.css']
 })
-export class CancelarTurnoComponent {
+export class RechazarComponent {
 
   @Input() turno : any;
   @Output() close = new EventEmitter<boolean>();
@@ -23,12 +23,13 @@ export class CancelarTurnoComponent {
       year: this.turno['Año']
     }
     let idTurno = await this.data.getTurnoIdByDateTime(turnoFecha, this.turno.Horario) || '';
-    this.data.updateEstadoTurno(idTurno, this.text, 'cancelado');
-    this.close.emit(true);
+    this.data.updateEstadoTurno(idTurno, this.text, 'rechazado');
+    this.close.emit();
   }
 
   public onDismiss()
   {
-    this.close.emit(false);
+    this.close.emit();
   }
+
 }

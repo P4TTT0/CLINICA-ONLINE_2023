@@ -140,13 +140,13 @@ export class DataService {
     return userUID;
   }
 
-  public async cancelTurno(id : any, mensaje : string)
+  public async updateEstadoTurno(id : any, mensaje : string = "", estado : string)
   {
     const userCollection = collection(this.firestore, 'Turno');
     const docRef = doc(userCollection, id);
 
     await updateDoc(docRef, {
-      Estad: 'cancelado',
+      Estad: estado,
       Mensaje: mensaje,
     });
   }
@@ -171,6 +171,7 @@ export class DataService {
       Encuesta: encuesta,
     });
   }
+  
 
   public async getTurnosByUserName(userName : string): Promise<any | null> {
     const userCollection = collection(this.firestore, 'Turno');
@@ -187,19 +188,18 @@ export class DataService {
     return users;
   }
 
-  public async getTurnosByEspecialistaUserName(userName : string): Promise<any | null> {
+  public getTurnosByEspecialistaUserName(userName: string): Observable<any[]> {
     const userCollection = collection(this.firestore, 'Turno');
     const q = query(userCollection, where('Especialista', '==', userName));
-    const querySnapshot = await getDocs(q);
   
-    if (querySnapshot.empty) 
-    {
-      return null;
-    }
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const messages = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(messages);
+      });
 
-    const users = querySnapshot.docs.map(doc => doc.data());
-
-    return users;
+      return () => unsubscribe();
+    });
   }
 
   public async GetUsersToFab(): Promise<any | null> {

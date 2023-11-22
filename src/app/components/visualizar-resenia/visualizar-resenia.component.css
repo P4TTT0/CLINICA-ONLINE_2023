@@ -1,0 +1,43 @@
+.body
+{
+    padding: 20px;
+    background-color: #47444820;
+    border-radius: 20px;
+}
+
+h1
+{
+    font-size: 30px;
+    color: black;
+}
+
+p
+{
+    color: rgb(56, 56, 56);
+}
+
+.textarea
+{
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #71717191;
+    padding: 10px;
+    height: 200px;
+}
+
+.button-cancel
+{
+    width: 100%;
+    border: none;
+    background-color: #6a8e5e;
+}
+
+.button-close
+{
+    border: none;
+    background-color: #8E5E6040;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+

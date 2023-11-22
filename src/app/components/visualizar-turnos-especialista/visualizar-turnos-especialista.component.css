@@ -89,6 +89,17 @@
     margin: 0px 5px;
 }
 
+.clean-btn
+{
+    padding: 5px;
+    border: none;
+    background-color: #444444;
+    border-radius: 3px;
+    color: #fff;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
 .button-cancel
 {
     padding: 5px;
@@ -123,9 +134,17 @@
     border-radius: 10px;
 }
 
-.rea
+.fin
 {
     background-color: #5E8E6B;
+    padding: 3px;
+    font-weight: 800;
+    border-radius: 10px;
+}
+
+.pen
+{
+    background-color: #8e745e;
     padding: 3px;
     font-weight: 800;
     border-radius: 10px;
