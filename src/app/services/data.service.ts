@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot } from
 '@angular/fire/firestore';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, groupBy, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -187,7 +187,20 @@ export class DataService {
     return users;
   }
 
+  public async getTurnosByEspecialistaUserName(userName : string): Promise<any | null> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Especialista', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
 
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
+  }
 
   public async GetUsersToFab(): Promise<any | null> {
     const userCollection = collection(this.firestore, 'User');
@@ -236,6 +249,30 @@ export class DataService {
     return users;
   }
 
+  public async GetPacientes(especialistaUserName: string, especialidad: string): Promise<string[] | null> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Especialista', '==', especialistaUserName), where('Especialidad', '==', especialidad));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) {
+      return null;
+    }
+  
+    const pacientesSet = new Set<string>();
+  
+    querySnapshot.forEach((doc) => {
+      const pacienteData = doc.data();
+      const paciente = pacienteData['Paciente'];
+      pacientesSet.add(paciente);
+    });
+  
+    const pacientesList = Array.from(pacientesSet.values());
+  
+    return pacientesList;
+  }
+  
+  
+
   public async IsDayOccupied(especialidad : string, especialista : string, day : any, month : any, year : any)
   {
     const userCollection = collection(this.firestore, 'Turno');
@@ -280,6 +317,22 @@ export class DataService {
     }
 
     const especialidades = querySnapshot.docs.map(doc => doc.data());
+
+    return especialidades;
+  }
+
+  public async GetEspecialidadesByEspecialistaUserName(especialistaUserName : string) : Promise<any | null> 
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', especialistaUserName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const especialidades = querySnapshot.docs.map(doc => doc.data()['Especialidad']);
 
     return especialidades;
   }

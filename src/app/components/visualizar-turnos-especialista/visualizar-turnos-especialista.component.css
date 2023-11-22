@@ -1,0 +1,132 @@
+.background
+{
+    width: 100%;
+    height: 90vh;
+    padding: 20px;
+}
+
+.especialidad
+{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-container
+{
+    background-color: #4744481a;
+    border-radius: 8px;
+}
+
+.radio-button input
+{
+    display: none;
+}
+
+.radio-button label 
+{
+    background-color: #47444883;
+    border: none;
+    color: #cacaca;
+    border-radius: 0px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
+
+.radio-button input[type="radio"]:checked+label {
+    background-color: #474448;
+}
+
+.radio-button
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.text
+{
+    padding: 0px 25px;
+    font-size: 25px;
+}
+
+.turnos-container
+{
+    height: 300px;
+    background-color: #4744481a;
+    border-radius: 10px;
+    padding: 10px 30px;
+    overflow-y: scroll;
+}
+
+.turno
+{
+    padding: 5px;
+    background-color: #474448;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.info
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.button
+{
+    padding: 5px;
+    border: none;
+    background-color: #5e8e6b;
+    border-radius: 3px;
+    margin: 0px 5px;
+}
+
+.button-cancel
+{
+    padding: 5px;
+    border: none;
+    background-color: #8e5e5e;
+    border-radius: 3px;
+    margin: 0px 5px;
+}
+
+.button-star
+{
+    padding: 5px;
+    border: none;
+    background-color: #8e895e;
+    border-radius: 3px;
+    margin: 0px 5px;
+}
+
+.esp
+{
+    background-color: #8e875e;
+    padding: 3px;
+    font-weight: 800;
+    border-radius: 10px;
+}
+
+.can
+{
+    background-color: #8E5E60;
+    padding: 3px;
+    font-weight: 800;
+    border-radius: 10px;
+}
+
+.rea
+{
+    background-color: #5E8E6B;
+    padding: 3px;
+    font-weight: 800;
+    border-radius: 10px;
+}

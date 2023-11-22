@@ -94,7 +94,7 @@ export class SolicitarTurnoComponent implements OnInit {
       let turno = {
         Paciente: this.auth.userName,
         Especialidad: this.especialidadSeleccionada,
-        Especialista: this.especialistaSeleccionado.Nombre, 
+        Especialista: this.especialistaSeleccionado.UserName, 
         Año: this.daySeleccionado.year,
         Mes: this.daySeleccionado.monthText,
         Dia: this.daySeleccionado.day,

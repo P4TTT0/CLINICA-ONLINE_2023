@@ -14,8 +14,8 @@
             </div>
             <div class="row especialidad">
                 <div *ngFor="let especialidad of this.especialidades" class="radio-button col-md-3 col-sm-4">
-                    <input type="radio" [id]="especialidad.Nombre" name="radios" [value]="especialidad.Nombre" [(ngModel)]="this.especialidadSeleccionada"  (change)="onEspecialidadChange(especialidad.Nombre)" checked>
-                    <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+                    <input type="radio" [id]="especialidad" name="radios" [value]="especialidad" [(ngModel)]="this.especialidadSeleccionada"  (change)="onEspecialidadChange(especialidad)" checked>
+                    <label [for]="especialidad">{{especialidad}}</label>
                 </div>
             </div>
         </div>
@@ -23,13 +23,13 @@
         <div class="info-container">
             <div class="row">
                 <div class="col-md-12 text">
-                    <span><b>Especialista</b></span>
+                    <span><b>Pacientes</b></span>
                 </div>
             </div>
             <div class="row especialidad">
-                <div *ngFor="let especialidad of this.especialistas" class="radio-button col-md-2 col-sm-4">
-                    <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado"  (change)="onEspecialistaChange(especialidad.Nombre)"  checked>
-                    <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+                <div *ngFor="let paciente of this.pacientes" class="radio-button col-md-2 col-sm-4">
+                    <input type="radio" [id]="paciente" name="radio" [value]="paciente" [(ngModel)]="this.pacienteSeleccionado"  checked>
+                    <label [for]="paciente">{{paciente}}</label>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <div class="col-md-12 turno" *ngFor="let turno of this.turnosFiltrados">
                     <div class="info">
                         <span>{{turno.Especialidad}}</span>
-                        <div>
+                        <!-- <div>
                             <button class="button-star" (click)="onEncuestaClick(turno)">
                                 <i class="bi bi-chat-fill"></i>
                             </button>
@@ -52,10 +52,10 @@
                             <button class="button">
                                 <i class="bi bi-file-text"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="info">
-                        <span>{{turno.Especialista}}</span>
+                        <span>{{turno.Paciente}}</span>
                         <div>
                             <span>{{turno.Dia}} / {{turno.Mes}} / {{turno['Año']}}</span>
                         </div>
@@ -66,9 +66,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5"> 
+    <!-- <div class="col-md-5"> 
         <app-cancelar-turno [turno]="fechaTurno" (close)="onCancelTurnoDismiss($event)" *ngIf="this.viewCancel"></app-cancelar-turno>
         <app-rate-turno [turno]="fechaTurno" (close)="onRateTurnoDismiss()" *ngIf="this.viewRate"></app-rate-turno>
         <app-encuesta [turno]="fechaTurno" (close)="onEncuestaTurnoDismiss()" *ngIf="this.viewEncuesta"></app-encuesta>
     </div>
-</div>
+</div> -->
+
+<!-- *ngIf="this.viewCancel -->

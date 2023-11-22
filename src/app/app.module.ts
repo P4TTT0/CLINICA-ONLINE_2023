@@ -33,6 +33,7 @@ import { CancelarTurnoComponent } from './components/turnos/cancelar-turno/cance
 import { NgbRatingModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RateTurnoComponent } from './components/turnos/rate-turno/rate-turno.component';
 import { EncuestaComponent } from './components/turnos/encuesta/encuesta.component';
+import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-turnos-especialista/visualizar-turnos-especialista.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EncuestaComponent } from './components/turnos/encuesta/encuesta.compone
     CancelarTurnoComponent,
     RateTurnoComponent,
     EncuestaComponent,
+    VisualizarTurnosEspecialistaComponent,
   ],
   imports: [
     BrowserModule,
