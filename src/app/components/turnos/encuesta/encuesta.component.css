@@ -1,0 +1,77 @@
+.body
+{
+    padding: 20px;
+    background-color: #47444820;
+    border-radius: 20px;
+}
+
+h1
+{
+    font-size: 30px;
+    color: black;
+}
+
+p
+{
+    color: rgb(56, 56, 56);
+}
+
+.textarea
+{
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #71717191;
+    padding: 10px;
+    height: 200px;
+}
+
+.button-cancel
+{
+    width: 100%;
+    border: none;
+    background-color: #8E5E60;
+}
+
+.button-close
+{
+    border: none;
+    background-color: #8E5E6040;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+.radio-button input
+{
+    display: none;
+}
+
+.radio-button label 
+{
+    background-color: #47444883;
+    border: none;
+    color: #cacaca;
+    border-radius: 0px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
+
+span
+{
+    color: #333;
+}
+
+.radio-button input[type="radio"]:checked+label {
+    background-color: #474448;
+}
+
+.radio-button
+{
+    display: flex;
+    flex-direction: row;
+}
+

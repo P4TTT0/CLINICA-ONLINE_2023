@@ -40,6 +40,9 @@
                     <div class="info">
                         <span>{{turno.Especialidad}}</span>
                         <div>
+                            <button class="button-star" (click)="onEncuestaClick(turno)">
+                                <i class="bi bi-chat-fill"></i>
+                            </button>
                             <button class="button-star" (click)="onRateTurnoClick(turno)">
                                 <i class="bi bi-star"></i>
                             </button>
@@ -66,6 +69,7 @@
     <div class="col-md-5"> 
         <app-cancelar-turno [turno]="fechaTurno" (close)="onCancelTurnoDismiss($event)" *ngIf="this.viewCancel"></app-cancelar-turno>
         <app-rate-turno [turno]="fechaTurno" (close)="onRateTurnoDismiss()" *ngIf="this.viewRate"></app-rate-turno>
+        <app-encuesta [turno]="fechaTurno" (close)="onEncuestaTurnoDismiss()" *ngIf="this.viewEncuesta"></app-encuesta>
     </div>
 </div>
 
