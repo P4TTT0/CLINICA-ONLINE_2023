@@ -1,27 +1,27 @@
-# ClinicaOnline2023
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+# CLINICA ONLINE
 
-## Development server
+¡Hola! ✨ 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+¡Bienvenido a mi proyecto de Clinica Online 2023! Un proyecto enfocado en la atencion de los pacientes y a la organizacion de los especialistas de forma virutal.
 
-## Code scaffolding
+La web ha sido diseñada en el lenguaje de TYPESCRIPT y con la ayuda del FrameWork ANGULAR. Ademas de utilizar bootstrap para el diseño de las interfaces, ng-bootstrap como solucion para ciertos componentes, firebase para el apartado backend y mucho más.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## PANTALLAS
+- Home: En esta sección, te dará la bienvenida con un mensaje personalizado adaptado a tu rol específico.
 
-## Build
+- Perfil: Aquí encontrarás la información que proporcionaste al registrarte. Si eres un especialista, tendrás la capacidad de seleccionar los horarios en los que estarás disponible para trabajar.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Solicitar turno: Tanto el administrador como el usuario tendrán la opción de reservar un turno en cualquier especialidad con cualquier especialista.
 
-## Running unit tests
+- Turnos: En esta pantalla, podrás visualizar detalladamente:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  - Usuarios: Los turnos solicitados por los usuarios.
+  - Especialistas: Los turnos asignados a los especialistas.
+  - Admin: Los turnos generales de la clínica.
 
-## Running end-to-end tests
+- Usuarios: Esta sección es exclusiva para el administrador. Aquí podrá acceder a la lista completa de usuarios registrados en el sistema y también tendrá la capacidad de aprobar a los especialistas que se han registrado.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## LOGO
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Isotipo_NoBCK_GREN](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/48a2435e-49d0-41a8-b11c-448a27955215)
