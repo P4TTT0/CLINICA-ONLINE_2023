@@ -38,6 +38,7 @@ import { RechazarComponent } from './components/turnos/rechazar/rechazar.compone
 import { FinishComponent } from './components/turnos/finish/finish.component';
 import { VisualizarReseniaComponent } from './components/visualizar-resenia/visualizar-resenia.component';
 import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-admin/visualizar-turnos-admin.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-a
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgxCaptchaModule
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}, DatePipe],
   bootstrap: [AppComponent]

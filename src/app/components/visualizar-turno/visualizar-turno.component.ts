@@ -22,6 +22,7 @@ export class VisualizarTurnoComponent {
   public viewCancel : boolean = false;
   public viewRate : boolean = false;
   public viewEncuesta : boolean = false;
+  public viewMessage : boolean = false;
 
   public fechaTurno! : string
 
@@ -34,11 +35,11 @@ export class VisualizarTurnoComponent {
   {
     this.especialidades = await this.data.GetEspecialidades();
     await this.auth.reLogin();
-    console.log(this.auth.userName);
-    this.turnos = await this.data.getTurnosByUserName(this.auth.userName);
-    this.turnosFiltrados = this.turnos;
-    console.log(this.turnos);
-    console.log(this.turnosFiltrados);
+    this.data.getTurnosByUserUserName(this.auth.userName).subscribe((x) =>
+    {
+      this.turnos = x;
+      this.turnosFiltrados = this.turnos;
+    });
   }
   
   public async onEspecialidadChange(especialidad : any)
@@ -60,11 +61,20 @@ export class VisualizarTurnoComponent {
     this.fechaTurno = turno;
   }
 
+  public onLimpiarFiltrosClick()
+  {
+    this.turnosFiltrados = this.turnos;
+    this.especialidadSeleccionada = null;
+    this.especialistaSeleccionado = null;
+    this.especialistas = null;
+  }
+
   public onRateTurnoClick(turno : any)
   {
     this.viewRate = true;
     this.viewEncuesta = false;
     this.viewCancel = false;
+    this.viewMessage = false;
     this.fechaTurno = turno;
   }
 
@@ -73,27 +83,22 @@ export class VisualizarTurnoComponent {
     this.viewEncuesta = true;
     this.viewCancel = false;
     this.viewRate = false;
+    this.viewMessage = false;
     this.fechaTurno = turno;
   }
 
-  public async onCancelTurnoDismiss(cancel : boolean)
+  public onReseniaClick(turno : any)
+  {
+    this.viewMessage = true;
+    this.viewEncuesta = false;
+    this.viewCancel = false;
+    this.viewRate = false;
+    this.fechaTurno = turno;
+  }
+
+  public async onCancelTurnoDismiss()
   {
     this.viewCancel = false;
-
-    if(cancel)
-    {
-      this.turnos = await this.data.getTurnosByUserName(this.auth.userName);
-      this.turnosFiltrados = this.turnos;
-      if(this.especialidadSeleccionada != null)
-      {
-        this.turnosFiltrados = this.turnos.filter((turno: { Especialidad: any; }) => turno.Especialidad == this.especialidadSeleccionada);
-  
-        if(this.especialistaSeleccionado != null)
-        {
-          this.turnosFiltrados = this.turnos.filter((turno: { Especialista: any; Especialidad : any;}) => turno.Especialista == this.especialistaSeleccionado && turno.Especialidad == this.especialidadSeleccionada);
-        }
-      }
-    }
   }
 
   public onRateTurnoDismiss()
@@ -104,5 +109,10 @@ export class VisualizarTurnoComponent {
   public onEncuestaTurnoDismiss()
   {
     this.viewEncuesta = false;
+  }
+
+  public onReseniaTurnoDismiss()
+  {
+    this.viewMessage = false;
   }
 }

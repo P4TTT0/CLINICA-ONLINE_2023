@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class AdminComponent {
   public form : FormGroup;
   public touched : boolean = false;
+  public siteKey : string = "6LdAdBkpAAAAAJ6liLDN4f1JpJ_-rd2EvBpEvCdu";
 
   constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
     this.form = this.formBuilder.group({
@@ -21,6 +22,7 @@ export class AdminComponent {
       apellido: ['', [Validators.required]],
       edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       dni: ['', [Validators.required, Validators.pattern('^[0-9]{1,9}$')]],
+      recaptcha: ['', Validators.required],
       email: ['',
         [
           Validators.required,

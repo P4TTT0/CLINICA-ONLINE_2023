@@ -15,6 +15,7 @@ Swal
 export class UserComponent {
   public form : FormGroup;
   public touched : boolean = false;
+  public siteKey : string = "6LdAdBkpAAAAAJ6liLDN4f1JpJ_-rd2EvBpEvCdu";
   @Output() registrado = new EventEmitter<boolean>();
 
   constructor(private router: Router, private formBuilder : FormBuilder, private auth : AuthService, private data : DataService, private loading : LoadingService) {
@@ -24,6 +25,7 @@ export class UserComponent {
       edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       dni: ['', [Validators.required, Validators.pattern('^[0-9]{1,9}$')]],
       obraSocial: ['', [Validators.required]],
+      recaptcha: ['', Validators.required],
       email: ['',
         [
           Validators.required,

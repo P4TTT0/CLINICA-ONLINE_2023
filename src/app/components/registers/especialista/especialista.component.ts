@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class EspecialistaComponent {
   public form : FormGroup;
   public touched : boolean = false;
+  public siteKey : string = "6LdAdBkpAAAAAJ6liLDN4f1JpJ_-rd2EvBpEvCdu";
   
   @Output() registrado = new EventEmitter<boolean>();
 
@@ -24,6 +25,7 @@ export class EspecialistaComponent {
       edad: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       dni: ['', [Validators.required, Validators.pattern('^[0-9]{1,9}$')]],
       especialidad: ['Medico', [Validators.required]],
+      recaptcha: ['', Validators.required],
       email: ['',
         [
           Validators.required,

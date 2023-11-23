@@ -75,6 +75,14 @@
             </div>
         </div>
         <app-seleccionar-especialidad (especilidadSeleccionada)="recibirEspecialidad($event)"></app-seleccionar-especialidad>
+        <div class="row">
+            <div class="col-md-12">
+                <ngx-recaptcha2 #captchaElem
+                [siteKey]="siteKey" formControlName="recaptcha">
+
+                </ngx-recaptcha2>
+            </div>
+        </div>
         <p>¿Ya tienes cuenta? <a href="login">Inicia sesion</a></p>
         <button type="button" class="btn btn-success" style="margin-top: 20px;">
             <span (click)="onRegisterClick()" class="button__text">Register Now</span>

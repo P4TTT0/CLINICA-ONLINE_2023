@@ -1,26 +1,5 @@
-<div class="screen">
+<div class="screen" *ngIf="this.tipo != null; else elseBlock">
     <div *ngIf="registrado == false" style="display: flex;">
-        <div class="login-container" style="margin-right: 20px; height: 200px;" >
-            <div class="title-container">
-                <h2>Register</h2>
-                <i class="bi bi-person-circle"></i>
-            </div>
-            <div class="radio-button">
-                <div>
-                    <input type="radio" id="especialista-radio" name="radios" [(ngModel)]="tipo" value="Especialista"
-                        checked>
-                    <label for="especialista-radio">Especialista</label>
-                </div>
-                <div>
-                    <input type="radio" id="usuario-radio" name="radios" [(ngModel)]="tipo" value="Usuario">
-                    <label for="usuario-radio">Usuario</label>
-                </div>
-                <div *ngIf="this.auth.rol == 'Admin'">
-                    <input type="radio" id="admin-radio" name="radios" [(ngModel)]="tipo" value="Admin">
-                    <label for="admin-radio">Admin</label>
-                </div>
-            </div>
-        </div>
         <div>
             <app-user *ngIf="this.tipo == 'Usuario'" (registrado)="recibirRegistro($event)"></app-user>
             <app-especialista *ngIf="this.tipo == 'Especialista'" (registrado)="recibirRegistro($event)"></app-especialista>
@@ -29,3 +8,15 @@
     </div>
     <app-email-validate *ngIf="registrado"></app-email-validate>
 </div>
+<ng-template #elseBlock>
+    <div class="background">
+        <button class="btn btn-op" (click)="onOptionClick('Usuario')">
+            <img class="img-btn" src="./../../../assets/usuario.jpeg">
+            <span>USUARIO</span>
+        </button>
+        <button class="btn btn-op" (click)="onOptionClick('Especialista')">
+            <img class="img-btn" src="./../../../assets/especialista.jpeg">
+            <span>ESPECIALISTA</span>
+        </button>
+    </div>
+</ng-template>

@@ -214,6 +214,27 @@ export class DataService {
     });
   }
 
+  public getTurnosByUserUserName(userName: string): Observable<any[]> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, 
+      where('Paciente', '==', userName),
+      orderBy('Año'),
+      orderBy('Mes'),  
+      orderBy('Dia', ),  
+      orderBy('Horario')  
+    );
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const messages = querySnapshot.docs.map((doc) => doc.data());
+        const sortedMessages = this.sortByCustomOrder(messages, this.mesesOrdenados, 'Mes');
+        observer.next(sortedMessages);
+      });
+
+      return () => unsubscribe();
+    });
+  }
+
   public getTurnos(): Observable<any[]> {
 
     const userCollection = collection(this.firestore, 'Turno');

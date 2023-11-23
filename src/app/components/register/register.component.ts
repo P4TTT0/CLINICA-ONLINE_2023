@@ -14,7 +14,7 @@ Swal
 })
 export class RegisterComponent {
   public form : FormGroup;
-  public tipo : string = "Usuario";
+  public tipo! : string;
   public registrado : boolean = false;
 
   constructor(private router: Router, private formBuilder : FormBuilder, public auth : AuthService, private data : DataService, private loading : LoadingService) {
@@ -133,5 +133,10 @@ export class RegisterComponent {
   public recibirRegistro(registrado : boolean)
   {
     this.registrado = registrado;
+  }
+
+  public onOptionClick(option : string)
+  {
+    this.tipo = option;
   }
 }

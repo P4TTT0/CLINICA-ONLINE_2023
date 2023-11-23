@@ -60,8 +60,8 @@ export class VisualizarTurnosAdminComponent {
   {
     this.turnosFiltrados = this.turnos;
     this.especialidadSeleccionada = null;
-    this.especialidadSeleccionada = null;
-    this.especialidades = null;
+    this.especialistaSeleccionado = null;
+    this.especialistas = null;
   }
 
   public onCancelClick(turno : any)

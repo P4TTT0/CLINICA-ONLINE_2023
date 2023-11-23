@@ -29,4 +29,20 @@ export class AppComponent implements OnInit {
   {
     this.router.navigateByUrl('profile');
   }
+
+  public onTurnosClick()
+  {
+    switch(this.auth.rol)
+    {
+      case 'Especialista':
+        this.router.navigateByUrl('ver-turnos-especialista');
+        break;
+      case 'Admin':
+        this.router.navigateByUrl('ver-turnos-admin');
+        break;
+      default:
+        this.router.navigateByUrl('ver-turnos');
+        break;
+    }
+  }
 }

@@ -1,1 +1,8 @@
-<app-no-validated *ngIf="this.auth.validationState == null && this.auth.rol == 'Especialista'"></app-no-validated>
+<app-no-validated *ngIf="this.auth.validationState == null && this.auth.rol == 'Especialista'; else elseBlock"></app-no-validated>
+<ng-template #elseBlock>
+    <div class="background">
+        <h1>¡Bienvenido!</h1>
+        <p *ngIf="this.auth.rol == 'Usuario'">Te cuidamos SIEMPRE.</p>
+        <p *ngIf="this.auth.rol == 'Especialista'">Tus manos salvan VIDAS.</p>
+    </div>
+</ng-template>
