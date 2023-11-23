@@ -189,16 +189,36 @@ export class DataService {
   }
 
   public getTurnosByEspecialistaUserName(userName: string): Observable<any[]> {
+    const mesesOrdenados = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
     const userCollection = collection(this.firestore, 'Turno');
-    const q = query(userCollection, where('Especialista', '==', userName));
-  
+    const q = query(userCollection, 
+      where('Especialista', '==', userName),
+      orderBy('Año'),
+      orderBy('Mes'),  
+      orderBy('Dia', ),  
+      orderBy('Horario')  
+    );
+
     return new Observable<any[]>((observer) => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const messages = querySnapshot.docs.map((doc) => doc.data());
-        observer.next(messages);
+        const sortedMessages = this.sortByCustomOrder(messages, mesesOrdenados, 'Mes');
+        observer.next(sortedMessages);
       });
 
       return () => unsubscribe();
+    });
+  }
+
+  private sortByCustomOrder(data: any[], customOrder: string[], field: string): any[] {
+    return data.sort((a, b) => {
+      const aValue = customOrder.indexOf(a[field]);
+      const bValue = customOrder.indexOf(b[field]);
+      return aValue - bValue;
     });
   }
 
