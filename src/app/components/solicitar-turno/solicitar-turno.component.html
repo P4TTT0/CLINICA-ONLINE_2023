@@ -8,7 +8,7 @@
         <div class="row especialidad">
             <div *ngFor="let especialidad of this.especialidades" class="radio-button col-md-2 col-sm-4">
                 <input type="radio" [id]="especialidad.Nombre" name="radios" [value]="especialidad.Nombre" [(ngModel)]="this.especialidadSeleccionada" (change)="onEspecialidadChange()" checked>
-                <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+                <label [for]="especialidad.Nombre"><img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" [src]="'data:image/png;base64,' + especialidad.Image"> {{especialidad.Nombre}}</label>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="row especialidad">
             <div *ngFor="let especialidad of this.especialistas" class="radio-button col-md-2 col-sm-4">
                 <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado" (change)="onEspecialistaChange(especialidad)"  checked>
-                <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
+                <label [for]="especialidad.Nombre"><img style="width: 50px; height: 50px; border-radius: 50%;" [src]="especialidad.ImageBase64"> {{especialidad.Nombre}}</label>
             </div>
         </div>
     </div>
