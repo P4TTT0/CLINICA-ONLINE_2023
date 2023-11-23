@@ -63,6 +63,9 @@
                             <button class="button" (click)="onViewMessageClick(turno)" *ngIf="turno.Estad == 'finalizado' && turno.Mensaje.length > 0 ">
                                 <i class="bi bi-file-earmark-person"></i>
                             </button>
+                            <button class="button" (click)="onHistoraClick(turno)" *ngIf="turno.Estad == 'finalizado' && turno.Mensaje.length > 0 ">
+                                <i class="bi bi-plus"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="info">
@@ -82,6 +85,7 @@
         <app-rechazar [turno]="turnoSeleccionado" (close)="onRechazarTurnoDismiss()" *ngIf="this.viewRechazar"></app-rechazar>
         <app-finish [turno]="turnoSeleccionado" (close)="onFinishTurnosDismiss()" *ngIf="this.viewFinish"> </app-finish>
         <app-visualizar-resenia [turno]="turnoSeleccionado" (close)="onReseniaTurnoDismiss()" *ngIf="this.viewMessage"></app-visualizar-resenia>
+        <app-historia-clinica [turno]="turnoSeleccionado" (close)="onHsitoriaClinicaDismiss()" *ngIf="this.viewHistoria"></app-historia-clinica>
     </div>
 </div>
 

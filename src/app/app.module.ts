@@ -39,6 +39,7 @@ import { FinishComponent } from './components/turnos/finish/finish.component';
 import { VisualizarReseniaComponent } from './components/visualizar-resenia/visualizar-resenia.component';
 import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-admin/visualizar-turnos-admin.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { HistoriaClinicaComponent } from './components/turnos/historia-clinica/historia-clinica.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     FinishComponent,
     VisualizarReseniaComponent,
     VisualizarTurnosAdminComponent,
+    HistoriaClinicaComponent,
   ],
   imports: [
     BrowserModule,

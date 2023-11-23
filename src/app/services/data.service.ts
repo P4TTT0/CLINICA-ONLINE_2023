@@ -434,6 +434,14 @@ export class DataService {
     });
   }
 
+  public async SaveHistoriaClinicaByUserName(historiaClinica : any)
+  {
+    const userCollection = collection(this.firestore, 'HistoriaClinica');
+    const docRef = doc(userCollection);
+
+    await setDoc(docRef, historiaClinica);
+  }
+
   public async SaveDNI(dni : string, userUID : string)
   {
     const userCollection = collection(this.firestore, 'User');

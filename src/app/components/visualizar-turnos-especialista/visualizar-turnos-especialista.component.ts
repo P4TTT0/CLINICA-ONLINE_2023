@@ -22,6 +22,7 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
   public viewRechazar : boolean = false;
   public viewFinish : boolean = false;
   public viewMessage : boolean = false;
+  public viewHistoria : boolean = false;
 
   constructor(private data : DataService, private auth : AuthService) {}
 
@@ -95,6 +96,7 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
     this.viewCancel = false;
     this.viewMessage = false;
     this.viewFinish = false;
+    this.viewHistoria = false;
   }
 
   public async onFinishTurnoClick(turno : any)
@@ -104,12 +106,24 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
     this.viewRechazar = false;
     this.viewCancel = false;
     this.viewMessage = false;
+    this.viewHistoria = false;
   }
 
   public async onViewMessageClick(turno : any)
   {
     this.turnoSeleccionado = turno;
     this.viewMessage = true;
+    this.viewFinish = false;
+    this.viewRechazar = false;
+    this.viewCancel = false;
+    this.viewHistoria = false;
+  }
+
+  public async onHistoraClick(turno : any)
+  {
+    this.turnoSeleccionado = turno;
+    this.viewHistoria = true;
+    this.viewMessage = false;
     this.viewFinish = false;
     this.viewRechazar = false;
     this.viewCancel = false;
@@ -133,5 +147,9 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
   public async onReseniaTurnoDismiss()
   {
     this.viewMessage = false;
+  }
+  public async onHsitoriaClinicaDismiss()
+  {
+    this.viewHistoria = false;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-finish',
@@ -15,7 +16,7 @@ export class FinishComponent {
   constructor(private data : DataService) {}
 
   public async onFinishClick()
-  {
+  {    
     let turnoFecha = 
     {
       day: this.turno.Dia,
