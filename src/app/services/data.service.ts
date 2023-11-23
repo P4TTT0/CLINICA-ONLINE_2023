@@ -8,6 +8,11 @@ import { BehaviorSubject, Observable, groupBy, map } from 'rxjs';
 })
 export class DataService {
 
+  public mesesOrdenados : string[] = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+  ];
+
   constructor(private firestore : Firestore) { }
 
   public async GetUserEmailByUserName(userName: string): Promise<string | null> {
@@ -189,11 +194,6 @@ export class DataService {
   }
 
   public getTurnosByEspecialistaUserName(userName: string): Observable<any[]> {
-    const mesesOrdenados = [
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ];
-
     const userCollection = collection(this.firestore, 'Turno');
     const q = query(userCollection, 
       where('Especialista', '==', userName),
@@ -206,7 +206,28 @@ export class DataService {
     return new Observable<any[]>((observer) => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const messages = querySnapshot.docs.map((doc) => doc.data());
-        const sortedMessages = this.sortByCustomOrder(messages, mesesOrdenados, 'Mes');
+        const sortedMessages = this.sortByCustomOrder(messages, this.mesesOrdenados, 'Mes');
+        observer.next(sortedMessages);
+      });
+
+      return () => unsubscribe();
+    });
+  }
+
+  public getTurnos(): Observable<any[]> {
+
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection,
+      orderBy('Año'),
+      orderBy('Mes'),  
+      orderBy('Dia', ),  
+      orderBy('Horario')  
+    );
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const messages = querySnapshot.docs.map((doc) => doc.data());
+        const sortedMessages = this.sortByCustomOrder(messages, this.mesesOrdenados, 'Mes');
         observer.next(sortedMessages);
       });
 

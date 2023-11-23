@@ -123,30 +123,6 @@
     border-radius: 10px;
 }
 
-.rea
-{
-    background-color: #5E8E6B;
-    padding: 3px;
-    font-weight: 800;
-    border-radius: 10px;
-}
-
-.esp
-{
-    background-color: #8e875e;
-    padding: 3px;
-    font-weight: 800;
-    border-radius: 10px;
-}
-
-.can
-{
-    background-color: #8E5E60;
-    padding: 3px;
-    font-weight: 800;
-    border-radius: 10px;
-}
-
 .fin
 {
     background-color: #5E8E6B;
@@ -161,4 +137,15 @@
     padding: 3px;
     font-weight: 800;
     border-radius: 10px;
+}
+
+.clean-btn
+{
+    padding: 5px;
+    border: none;
+    background-color: #444444;
+    border-radius: 3px;
+    color: #fff;
+    margin-bottom: 10px;
+    width: 100%;
 }

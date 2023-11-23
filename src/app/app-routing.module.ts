@@ -9,6 +9,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { SolicitarTurnoComponent } from './components/solicitar-turno/solicitar-turno.component';
 import { VisualizarTurnoComponent } from './components/visualizar-turno/visualizar-turno.component';
 import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-turnos-especialista/visualizar-turnos-especialista.component';
+import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-admin/visualizar-turnos-admin.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: "profile", component: PerfilComponent},
   {path: "solicitar-turno", component: SolicitarTurnoComponent},
   {path: "ver-turnos", component: VisualizarTurnoComponent},
-  {path: 'ver-turnos-especialista', component: VisualizarTurnosEspecialistaComponent}
+  {path: 'ver-turnos-especialista', component: VisualizarTurnosEspecialistaComponent},
+  {path: 'ver-turnos-admin', component: VisualizarTurnosAdminComponent}
 ];
 
 @NgModule({

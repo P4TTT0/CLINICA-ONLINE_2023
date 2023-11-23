@@ -37,6 +37,7 @@ import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-t
 import { RechazarComponent } from './components/turnos/rechazar/rechazar.component';
 import { FinishComponent } from './components/turnos/finish/finish.component';
 import { VisualizarReseniaComponent } from './components/visualizar-resenia/visualizar-resenia.component';
+import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-admin/visualizar-turnos-admin.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { VisualizarReseniaComponent } from './components/visualizar-resenia/visu
     RechazarComponent,
     FinishComponent,
     VisualizarReseniaComponent,
+    VisualizarTurnosAdminComponent,
   ],
   imports: [
     BrowserModule,

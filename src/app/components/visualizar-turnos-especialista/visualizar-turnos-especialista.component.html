@@ -41,6 +41,7 @@
                 </button>
             </div>
         </div>
+
         <div class="turnos-container">
             <div class="row">
                 <div class="col-md-12 turno" *ngFor="let turno of this.turnosFiltrados">
@@ -81,8 +82,6 @@
         <app-rechazar [turno]="turnoSeleccionado" (close)="onRechazarTurnoDismiss()" *ngIf="this.viewRechazar"></app-rechazar>
         <app-finish [turno]="turnoSeleccionado" (close)="onFinishTurnosDismiss()" *ngIf="this.viewFinish"> </app-finish>
         <app-visualizar-resenia [turno]="turnoSeleccionado" (close)="onReseniaTurnoDismiss()" *ngIf="this.viewMessage"></app-visualizar-resenia>
-        <!-- <app-rate-turno [turno]="fechaTurno" (close)="onRateTurnoDismiss()" *ngIf="this.viewRate"></app-rate-turno>
-        <app-encuesta [turno]="fechaTurno" (close)="onEncuestaTurnoDismiss()" *ngIf="this.viewEncuesta"></app-encuesta> -->
     </div>
 </div>
 
