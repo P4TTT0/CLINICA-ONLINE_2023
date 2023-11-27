@@ -36,12 +36,6 @@ export class HistoriaClinicaComponent {
       Peso: this.peso,
       Temperatura: this.temperatura,
       Presion: this.presion,
-      Paciente: this.turno.Paciente,
-      Dia: this.turno.Dia,
-      Mes: this.turno.Mes,
-      Año: this.turno.Año,
-      Especialidad: this.turno.Especialidad,
-      Especialista: this.turno.Especialista,
     }
 
     for (let i = 0; i < this.campos.length; i++) {
@@ -53,7 +47,14 @@ export class HistoriaClinicaComponent {
       }
     }
 
-    await this.data.SaveHistoriaClinicaByUserName(historiaClinica);
+    let date = {
+      day: this.turno.Dia,
+      monthText: this.turno.Mes,
+      year: this.turno.Año,
+    }
+
+    let turnoId = await this.data.getTurnoIdByDateTime(date, this.turno.Horario);
+    await this.data.saveHistoriaClinicaByTurnoId(turnoId, historiaClinica);
     
     this.close.emit();
   }

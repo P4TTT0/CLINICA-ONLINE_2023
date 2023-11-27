@@ -437,14 +437,14 @@ export class DataService {
   }
 
   public async getHistoriasByUserName(userName: string) {
-    const userCollection = collection(this.firestore, 'HistoriaClinica');
+    const userCollection = collection(this.firestore, 'Turno');
     const q = query(userCollection, where('Paciente', '==', userName));
     const querySnapshot = await getDocs(q);
   
     const historiasClinicas : any = [];
   
     querySnapshot.forEach((doc) => {
-      historiasClinicas.push(doc.data());
+      historiasClinicas.push(doc.data()['HistoriaClinica']);
     });
   
     return historiasClinicas;
@@ -472,10 +472,20 @@ export class DataService {
 
   public async SaveHistoriaClinicaByUserName(historiaClinica : any)
   {
-    const userCollection = collection(this.firestore, 'HistoriaClinica');
+    const userCollection = collection(this.firestore, 'Turno');
     const docRef = doc(userCollection);
 
     await setDoc(docRef, historiaClinica);
+  }
+
+  public async saveHistoriaClinicaByTurnoId(id : any, historiaClinica : any)
+  {
+    const userCollection = collection(this.firestore, 'Turno');
+    const docRef = doc(userCollection, id);
+
+    await updateDoc(docRef, {
+      HistoriaClinica: historiaClinica,
+    });
   }
 
   public async SaveDNI(dni : string, userUID : string)

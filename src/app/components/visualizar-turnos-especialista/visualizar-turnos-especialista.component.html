@@ -63,7 +63,7 @@
                             <button class="button" (click)="onViewMessageClick(turno)" *ngIf="turno.Estad == 'finalizado' && turno.Mensaje.length > 0 ">
                                 <i class="bi bi-file-earmark-person"></i>
                             </button>
-                            <button class="button" (click)="onHistoraClick(turno)" *ngIf="turno.Estad == 'finalizado' && turno.Mensaje.length > 0 ">
+                            <button class="button" (click)="onHistoraClick(turno)" *ngIf="turno.Estad == 'finalizado' && turno.Mensaje.length > 0 && turno.HistoriaClinica == null">
                                 <i class="bi bi-plus"></i>
                             </button>
                         </div>
