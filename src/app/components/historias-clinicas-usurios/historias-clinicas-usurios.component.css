@@ -1,0 +1,35 @@
+.info-container
+{
+    background-color: #4744481a;
+    border-radius: 8px;
+}
+
+.radio-button input
+{
+    display: none;
+}
+
+.radio-button label 
+{
+    background-color: #47444883;
+    border: none;
+    color: #cacaca;
+    border-radius: 0px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
+
+.radio-button input[type="radio"]:checked+label {
+    background-color: #474448;
+}
+
+.radio-button
+{
+    display: flex;
+    flex-direction: row;
+}

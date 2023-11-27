@@ -79,4 +79,16 @@ img
     justify-content: space-around;
     align-items: center;
 }
+
+th
+{
+    background-color: #474448;
+    color: fff;
+    font-size: 15px
+}
+
+td{
+    background-color: #47444871;
+    border: none;
+}
   

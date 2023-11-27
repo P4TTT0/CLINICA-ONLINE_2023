@@ -41,6 +41,7 @@ export class HistoriaClinicaComponent {
       Mes: this.turno.Mes,
       Año: this.turno.Año,
       Especialidad: this.turno.Especialidad,
+      Especialista: this.turno.Especialista,
     }
 
     for (let i = 0; i < this.campos.length; i++) {
@@ -53,6 +54,7 @@ export class HistoriaClinicaComponent {
     }
 
     await this.data.SaveHistoriaClinicaByUserName(historiaClinica);
-
+    
+    this.close.emit();
   }
 }

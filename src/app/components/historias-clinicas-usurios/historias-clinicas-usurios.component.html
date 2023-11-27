@@ -1,0 +1,22 @@
+<div class="background">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Historias clinicas</h1>
+        </div>
+        <div class="col-md-3">
+            <div class="info-container">
+                <div class="row">
+                    <div class="col-md-12 text">
+                        <span><b>Pacientes</b></span>
+                    </div>
+                </div>
+                <div class="row especialidad">
+                    <div *ngFor="let paciente of this.pacientes" class="radio-button col-md-12">
+                        <input type="radio" [id]="paciente" name="radio" [value]="paciente" (change)="onPacienteChange(paciente)" [(ngModel)]="this.pacienteSeleccionado"  checked>
+                        <label [for]="paciente">{{paciente}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

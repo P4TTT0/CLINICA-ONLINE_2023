@@ -332,6 +332,28 @@ export class DataService {
   
     return pacientesList;
   }
+
+  public async GetPacientesByEspecialistaUserName(especialistaUserName: string): Promise<string[] | null> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Especialista', '==', especialistaUserName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) {
+      return null;
+    }
+  
+    const pacientesSet = new Set<string>();
+  
+    querySnapshot.forEach((doc) => {
+      const pacienteData = doc.data();
+      const paciente = pacienteData['Paciente'];
+      pacientesSet.add(paciente);
+    });
+  
+    const pacientesList = Array.from(pacientesSet.values());
+  
+    return pacientesList;
+  }
   
   
 
@@ -412,6 +434,20 @@ export class DataService {
     const querySnapshot = await getDocs(q);
     const userDoc = querySnapshot.docs[0];
     return userDoc.data();
+  }
+
+  public async getHistoriasByUserName(userName: string) {
+    const userCollection = collection(this.firestore, 'HistoriaClinica');
+    const q = query(userCollection, where('Paciente', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    const historiasClinicas : any = [];
+  
+    querySnapshot.forEach((doc) => {
+      historiasClinicas.push(doc.data());
+    });
+  
+    return historiasClinicas;
   }
 
   public async getJoinDateByUserName(userName : string)

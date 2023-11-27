@@ -37,6 +37,25 @@
                 <span>Obra social: </span>
                 <span> {{this.user.ObraSocial}}</span>
             </div>
+
+            <div *ngIf="this.auth.rol == 'Usuario'">
+                <h1>Historias clinicas</h1>
+                <div class="col-md-12" *ngFor="let historiaClinica of this.historiasClinicas">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let campo of historiaClinica | keyvalue">{{ campo.key }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td *ngFor="let campo of historiaClinica | keyvalue">{{ campo.value }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+
             <div *ngIf="this.auth.rol == 'Especialista'">
                 <div class="col-md-12 name">
                     <div>
