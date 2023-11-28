@@ -5,11 +5,13 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import Swal from 'sweetalert2';
+import { slideInUp } from 'src/app/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [slideInUp]
 })
 
 export class LoginComponent implements OnInit {

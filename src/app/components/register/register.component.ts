@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { slideInUp } from 'src/app/animations';
 import Swal from 'sweetalert2';
 Swal
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [slideInUp]
 })
 export class RegisterComponent {
   public form : FormGroup;

@@ -9,7 +9,7 @@
     <app-email-validate *ngIf="registrado"></app-email-validate>
 </div>
 <ng-template #elseBlock>
-    <div class="background">
+    <div class="background" [@slideInUp]>
         <button class="btn btn-op" (click)="onOptionClick('Usuario')">
             <img class="img-btn" src="./../../../assets/usuario.jpeg">
             <span>USUARIO</span>

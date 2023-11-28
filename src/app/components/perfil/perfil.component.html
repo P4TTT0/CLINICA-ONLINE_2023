@@ -39,22 +39,13 @@
             </div>
 
             <div *ngIf="this.auth.rol == 'Usuario'" class="historias-container row">
-                <h1>Historias clinicas</h1>
-                <div class="col-md-12 historia-container" *ngFor="let turno of this.turnos">
-                    <div *ngIf="turno['HistoriaClinica'] != null">
-                        <span>{{turno['Especialidad']}} - {{turno['Especialista']}} - {{turno['Dia']}}/{{turno['Mes']}}/{{turno['Año']}}</span>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.key }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.value }}</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                <h1>Descargar historias clinicas</h1>
+                <div class="row">
+                    <div *ngFor="let especialidad of this.especialidades" class="col-md-3 col-sm-4">
+                        <div class="especialidad">
+                            <span>{{especialidad}}</span>
+                            <button type="button" class="btn" (click)="onDownloadHistoriaClick(especialidad)"><i class="bi bi-download"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -432,7 +432,7 @@ export class DataService {
 
   public async GetEspecialidadesByEspecialistaUserName(especialistaUserName : string) : Promise<any | null> 
   {
-    const userCollection = collection(this.firestore, 'User');
+    const userCollection = collection(this.firestore, 'Turno');
     const q = query(userCollection, where('UserName', '==', especialistaUserName));
     const querySnapshot = await getDocs(q);
   
@@ -445,6 +445,32 @@ export class DataService {
 
     return especialidades;
   }
+
+  public async GetEspecialidadesByPacienteUserName(pacienteUserName: string): Promise<string[] | null> {
+    const userCollection = collection(this.firestore, 'Turno');
+    const q = query(userCollection, where('Paciente', '==', pacienteUserName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) {
+      return null;
+    }
+  
+    const especialidadesSet = new Set<string>();
+  
+    querySnapshot.forEach((doc) => {
+      const especialidad = doc.data()['Especialidad'];
+      const historiaClinica = doc.data()['HistoriaClinica'];
+  
+      if (especialidad && historiaClinica) {
+        especialidadesSet.add(especialidad);
+      }
+    });
+  
+    const especialidades = Array.from(especialidadesSet);
+  
+    return especialidades;
+  }
+  
 
   public SaveTurno(turno : any)
   {

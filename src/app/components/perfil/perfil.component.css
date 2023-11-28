@@ -55,10 +55,7 @@ img
 .historias-container
 {
     width: 100%;
-    background-color: #47444878;
     padding: 10px;
-    height: 100%;
-    overflow-y: scroll;
 }
 
 .historia-container
@@ -113,5 +110,16 @@ th
 td{
     background-color: #47444871;
     border: none;
+}
+
+.especialidad
+{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #474448;
+    border-radius: 30px;
+    margin: 10px;
 }
   

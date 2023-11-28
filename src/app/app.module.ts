@@ -43,6 +43,7 @@ import { HistoriaClinicaComponent } from './components/turnos/historia-clinica/h
 import { HistoriasClinicasUsuriosComponent } from './components/historias-clinicas-usurios/historias-clinicas-usurios.component';
 import { UserHistoriaClinicaComponent } from './components/modals/user-historia-clinica/user-historia-clinica.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     NgbModule,
     NgxCaptchaModule,
     MdbModalModule,
+    HttpClientModule,
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}, DatePipe],
   bootstrap: [AppComponent]
