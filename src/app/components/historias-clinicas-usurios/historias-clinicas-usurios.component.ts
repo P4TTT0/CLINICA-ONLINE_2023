@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { UserHistoriaClinicaComponent } from '../modals/user-historia-clinica/user-historia-clinica.component';
 
 @Component({
   selector: 'app-historias-clinicas-usurios',
@@ -13,7 +15,9 @@ export class HistoriasClinicasUsuriosComponent implements OnInit {
 
   public pacienteSeleccionado : any;
 
-  constructor(private data : DataService, private auth : AuthService) {}
+  modalRef: MdbModalRef<UserHistoriaClinicaComponent> | null = null;
+
+  constructor(private data : DataService, private auth : AuthService, private modalService: MdbModalService) {}
 
   async ngOnInit() {
     await this.auth.reLogin();
@@ -24,5 +28,12 @@ export class HistoriasClinicasUsuriosComponent implements OnInit {
   public onPacienteChange(paciente : any)
   {
 
+  }
+
+  public onCardClick(pacienteInfo : any)
+  {
+    this.modalRef = this.modalService.open(UserHistoriaClinicaComponent, {
+      data: { paciente: pacienteInfo },
+    });
   }
 }

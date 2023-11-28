@@ -1,0 +1,32 @@
+<div class="background">
+    <h3>Paciente: {{this.paciente.Nombre}} {{this.paciente.Apellido}}</h3>
+
+    <div class="row">
+        <div class="col-md-12 turnos">
+            <span>Ultimos tres turnos.</span>
+            <span *ngIf="this.ultimosTurnos[this.ultimosTurnos.length - 1] != null">{{this.ultimosTurnos[this.ultimosTurnos.length - 1].Dia}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 1].Mes}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 1]['Año']}}</span>
+            <span *ngIf="this.ultimosTurnos[this.ultimosTurnos.length - 2] != null">{{this.ultimosTurnos[this.ultimosTurnos.length - 2].Dia}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 2].Mes}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 2]['Año']}}</span>
+            <span *ngIf="this.ultimosTurnos[this.ultimosTurnos.length - 3] != null">{{this.ultimosTurnos[this.ultimosTurnos.length - 3].Dia}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 3].Mes}}/{{this.ultimosTurnos[this.ultimosTurnos.length - 3]['Año']}}</span>
+        </div>
+    </div>
+    <div class="historias-container row">
+                <h1>Historias clinicas</h1>
+                <div class="col-md-12 historia-container" *ngFor="let turno of this.turnos">
+                    <div *ngIf="turno['HistoriaClinica'] != null">
+                        <span>{{turno['Especialidad']}} - {{turno['Especialista']}} - {{turno['Dia']}}/{{turno['Mes']}}/{{turno['Año']}}</span>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.key }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.value }}</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    </div>
+</div>

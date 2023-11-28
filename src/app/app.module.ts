@@ -41,6 +41,8 @@ import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-a
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { HistoriaClinicaComponent } from './components/turnos/historia-clinica/historia-clinica.component';
 import { HistoriasClinicasUsuriosComponent } from './components/historias-clinicas-usurios/historias-clinicas-usurios.component';
+import { UserHistoriaClinicaComponent } from './components/modals/user-historia-clinica/user-historia-clinica.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { HistoriasClinicasUsuriosComponent } from './components/historias-clinic
     VisualizarTurnosAdminComponent,
     HistoriaClinicaComponent,
     HistoriasClinicasUsuriosComponent,
+    UserHistoriaClinicaComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import { HistoriasClinicasUsuriosComponent } from './components/historias-clinic
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    MdbModalModule,
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}, DatePipe],
   bootstrap: [AppComponent]

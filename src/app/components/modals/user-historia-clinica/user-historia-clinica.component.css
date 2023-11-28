@@ -1,0 +1,44 @@
+.background
+{
+    padding: 20px;
+}
+
+.historias-container
+{
+    width: 100%;
+    background-color: #47444878;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.turnos
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.historia-container
+{
+    background-color: #4744489f;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.historia-info
+{
+    background-color: #fff;
+}
+
+th
+{
+    background-color: #474448;
+    color: fff;
+    font-size: 15px
+}
+
+td{
+    background-color: #47444871;
+    border: none;
+}
