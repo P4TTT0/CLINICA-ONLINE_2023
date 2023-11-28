@@ -25,7 +25,7 @@ export class FilesService {
     });
     saveAs(
       new Blob([excelBuffer]),
-      'sas.xlsx',
+      array[0].Paciente + '_' + 'Historia-Clinica' + '.xlsx',
     );
   }
 

@@ -24,6 +24,8 @@ export class VisualizarTurnoComponent {
   public viewEncuesta : boolean = false;
   public viewMessage : boolean = false;
 
+  public inputFiltro : any;
+
   public fechaTurno! : string
 
   constructor(private data : DataService, private auth : AuthService, private config : NgbRatingConfig) 
@@ -46,6 +48,29 @@ export class VisualizarTurnoComponent {
   {
     this.especialistas = await this.data.GetEspecialistas(especialidad);
     this.turnosFiltrados = this.turnos.filter((turno: { Especialidad: any; }) => turno.Especialidad == especialidad);
+  }
+
+  public filtrarTurnos()
+  {
+    this.turnosFiltrados = this.turnos.filter((turno : any) =>
+      Object.values(turno).some((valor: any) => {
+        if (typeof valor === 'string' || valor instanceof String) 
+        {
+          return valor.toLowerCase().includes(this.inputFiltro.toLowerCase());
+        }
+        else 
+        {
+          if (typeof valor === 'object' && valor !== null) 
+          {
+            return Object.values(valor).some((valorAnidado: any) =>
+              typeof valorAnidado === 'string' && valorAnidado.toLowerCase().includes(this.inputFiltro.toLowerCase())
+            );
+          }
+        }
+        
+        return false;
+      })
+    );
   }
 
   public async onEspecialistaChange(especialista : any)

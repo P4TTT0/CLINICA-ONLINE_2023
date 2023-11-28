@@ -6,33 +6,11 @@
             </div>
         </div>
 
-        <div class="info-container">
-            <div class="row">
-                <div class="col-md-12 text">
-                    <span><b>Especialidad</b></span>
-                </div>
-            </div>
-            <div class="row especialidad">
-                <div *ngFor="let especialidad of this.especialidades" class="radio-button col-md-3 col-sm-4">
-                    <input type="radio" [id]="especialidad.Nombre" name="radios" [value]="especialidad.Nombre" [(ngModel)]="this.especialidadSeleccionada"  (change)="onEspecialidadChange(especialidad.Nombre)" checked>
-                    <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
-                </div>
-            </div>
+       <div class="row">
+        <div class="col-md-12">
+            <input type="text" [(ngModel)]="inputFiltro" (input)="filtrarTurnos()">
         </div>
-
-        <div class="info-container">
-            <div class="row">
-                <div class="col-md-12 text">
-                    <span><b>Especialista</b></span>
-                </div>
-            </div>
-            <div class="row especialidad">
-                <div *ngFor="let especialidad of this.especialistas" class="radio-button col-md-2 col-sm-4">
-                    <input type="radio" [id]="especialidad.Nombre" name="radio" [value]="especialidad" [(ngModel)]="this.especialistaSeleccionado"  (change)="onEspecialistaChange(especialidad.Nombre)"  checked>
-                    <label [for]="especialidad.Nombre">{{especialidad.Nombre}}</label>
-                </div>
-            </div>
-        </div>
+       </div>
 
         <div class="row">
             <div class="col-md-12">
