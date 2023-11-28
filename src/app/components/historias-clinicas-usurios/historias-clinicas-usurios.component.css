@@ -1,35 +1,44 @@
+.background
+{
+    padding: 20px;
+}
 .info-container
 {
     background-color: #4744481a;
     border-radius: 8px;
+    padding: 10px;
 }
 
-.radio-button input
+.text
 {
-    display: none;
+    font-size: 30px;
+    color: #c7c7c7;
 }
 
-.radio-button label 
+.card
 {
-    background-color: #47444883;
-    border: none;
-    color: #cacaca;
-    border-radius: 0px;
-    font-size: 15px;
-    border-radius: 10px;
-    padding: 5px;
     cursor: pointer;
-    width: 100%;
-    text-align: center;
-    margin: 5px;
+    transition: all 0.3s;
 }
 
-.radio-button input[type="radio"]:checked+label {
-    background-color: #474448;
-}
-
-.radio-button
+.card:hover
 {
-    display: flex;
-    flex-direction: row;
+    transform: scale(1.03);
+}
+
+.card-body
+{
+    background-color: #474448;
+    border-radius: 0px 0px 0px 10px;
+}
+
+.card-title
+{
+    color: #fff;
+}
+
+.card
+{
+    background: none;
+    border: none;
 }

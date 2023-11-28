@@ -49,6 +49,29 @@ img
 {
     padding: 30px;
     font-size: 20px;
+    height: 450px;
+}
+
+.historias-container
+{
+    width: 100%;
+    background-color: #47444878;
+    padding: 10px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.historia-container
+{
+    background-color: #4744489f;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.historia-info
+{
+    background-color: #fff;
 }
 
 .custom-checkbox {

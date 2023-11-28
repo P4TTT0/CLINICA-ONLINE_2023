@@ -16,7 +16,9 @@ export class HistoriasClinicasUsuriosComponent implements OnInit {
   constructor(private data : DataService, private auth : AuthService) {}
 
   async ngOnInit() {
+    await this.auth.reLogin();
     this.pacientes = await this.data.GetPacientesByEspecialistaUserName(this.auth.userName);
+    console.log(this.pacientes);
   }
 
   public onPacienteChange(paciente : any)

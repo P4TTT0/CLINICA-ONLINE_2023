@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PerfilComponent implements OnInit{
   public user : any;
-  public historiasClinicas : any;
+  public turnos : any;
   public isMananaSelected: boolean = false;
   public isTardeSelected: boolean = false;
 
@@ -18,8 +18,12 @@ export class PerfilComponent implements OnInit{
   async ngOnInit() {
     await this.auth.reLogin();
     this.user = await this.data.getUserByUserName(this.auth.userName);
-    this.historiasClinicas = await this.data.getHistoriasByUserName(this.auth.userName);
-    console.log(this.historiasClinicas);
+    this.data.getTurnosByUserUserName(this.auth.userName).subscribe((x) =>
+    {
+      this.turnos = x;
+      this.turnos = this.turnos.filter((turno : {HistoriaClinica : any}) => turno.HistoriaClinica != null);
+    });
+    console.log(this.turnos);
     this.isMananaSelected = this.user.HorarioMañana;
     this.isTardeSelected = this.user.HorarioTarde;
   }

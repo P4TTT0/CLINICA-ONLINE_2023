@@ -38,21 +38,24 @@
                 <span> {{this.user.ObraSocial}}</span>
             </div>
 
-            <div *ngIf="this.auth.rol == 'Usuario'">
+            <div *ngIf="this.auth.rol == 'Usuario'" class="historias-container row">
                 <h1>Historias clinicas</h1>
-                <div class="col-md-12" *ngFor="let historiaClinica of this.historiasClinicas">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th *ngFor="let campo of historiaClinica | keyvalue">{{ campo.key }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td *ngFor="let campo of historiaClinica | keyvalue">{{ campo.value }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                <div class="col-md-12 historia-container" *ngFor="let turno of this.turnos">
+                    <div *ngIf="turno['HistoriaClinica'] != null">
+                        <span>{{turno['Especialidad']}} - {{turno['Especialista']}} - {{turno['Dia']}}/{{turno['Mes']}}/{{turno['Año']}}</span>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.key }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td *ngFor="let campo of turno['HistoriaClinica'] | keyvalue">{{ campo.value }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
                 </div>
             </div>
 

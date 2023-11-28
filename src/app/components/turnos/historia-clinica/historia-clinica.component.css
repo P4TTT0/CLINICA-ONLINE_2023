@@ -26,6 +26,14 @@ p
     height: 200px;
 }
 
+.button-sacar
+{
+    padding: 10px;
+    border: none;
+    background-color: #8e5e5e;
+    border-radius: 10px;
+}
+
 .button-cancel
 {
     width: 100%;

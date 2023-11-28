@@ -1,19 +1,20 @@
 <div class="background">
     <div class="row">
         <div class="col-md-12">
-            <h1>Historias clinicas</h1>
-        </div>
-        <div class="col-md-3">
             <div class="info-container">
                 <div class="row">
-                    <div class="col-md-12 text">
-                        <span><b>Pacientes</b></span>
+                    <div class="col-md-12">
+                        <span class="text"><b>Pacientes</b></span>
                     </div>
                 </div>
                 <div class="row especialidad">
-                    <div *ngFor="let paciente of this.pacientes" class="radio-button col-md-12">
-                        <input type="radio" [id]="paciente" name="radio" [value]="paciente" (change)="onPacienteChange(paciente)" [(ngModel)]="this.pacienteSeleccionado"  checked>
-                        <label [for]="paciente">{{paciente}}</label>
+                    <div class="col-md-3"  *ngFor="let paciente of this.pacientes">
+                        <div class="card col-md-3" style="width: 18rem;">
+                            <img class="card-img-top" [src]="paciente.ImageBase64" alt="ImagenPaciente">
+                            <div class="card-body">
+                              <h5 class="card-title">{{paciente.Nombre}} {{paciente.Apellido}}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

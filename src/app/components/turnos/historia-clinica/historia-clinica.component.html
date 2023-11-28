@@ -41,17 +41,28 @@
 
     
     <div class="row" style="margin: 0; padding: 0;" *ngFor="let campo of campos; let i = index"> 
-        <div class="col-md-6" style="text-align: left;">
-            <span>Clave {{i + 1}}</span>
-        </div>
-        <div class="col-md-6" style="text-align: center;">
-            <input [id]="'clave' + i" class="input-form" type="text">
-        </div>
-        <div class="col-md-6" style="text-align: left;">
-            <span>Valor {{i + 1}}</span>
-        </div>
-        <div class="col-md-6" style="text-align: center;">
-            <input [id]="'valor' + i" class="input-form" type="text">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-6" style="text-align: left;">
+                        <span>Clave {{i + 1}}</span>
+                    </div>
+                    <div class="col-md-6" style="text-align: center;">
+                        <input [id]="'clave' + i" class="input-form" type="text">
+                    </div>
+                    <div class="col-md-6" style="text-align: left;">
+                        <span>Valor {{i + 1}}</span>
+                    </div>
+                    <div class="col-md-6" style="text-align: center;">
+                        <input [id]="'valor' + i" class="input-form" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 d-flex justify-content-center align-items-center" > 
+                <button class="button-sacar" (click)="eliminarCampo(i)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
         </div>
     </div> 
 

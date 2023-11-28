@@ -58,4 +58,9 @@ export class HistoriaClinicaComponent {
     
     this.close.emit();
   }
+
+  public eliminarCampo(index : number)
+  {
+    this.campos.splice(index, 1);
+  }
 }

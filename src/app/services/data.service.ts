@@ -333,27 +333,52 @@ export class DataService {
     return pacientesList;
   }
 
-  public async GetPacientesByEspecialistaUserName(especialistaUserName: string): Promise<string[] | null> {
-    const userCollection = collection(this.firestore, 'Turno');
-    const q = query(userCollection, where('Especialista', '==', especialistaUserName));
-    const querySnapshot = await getDocs(q);
+  public async GetPacientesByEspecialistaUserName(especialistaUserName: string): Promise<any[] | null> {
+    const turnoCollection = collection(this.firestore, 'Turno');
+    const turnoQuery = query(turnoCollection, where('Especialista', '==', especialistaUserName));
   
-    if (querySnapshot.empty) {
+    try {
+      const turnoQuerySnapshot = await getDocs(turnoQuery);
+      
+      if (turnoQuerySnapshot.empty) {
+        return null;
+      }
+      
+      const pacientesSet = new Set<string>();
+      const pacientesPromises: Promise<any>[] = [];
+      
+      turnoQuerySnapshot.forEach((turnoDoc) => {
+        const pacienteUserName = turnoDoc.data()['Paciente'];
+        pacientesSet.add(pacienteUserName);
+      });
+
+  
+      pacientesSet.forEach((pacienteUserName: string) => {
+        const userCollection = collection(this.firestore, 'User');
+        const pacienteQuery = query(userCollection, where('UserName', '==', pacienteUserName));
+  
+        const pacientePromise = getDocs(pacienteQuery).then((pacienteQuerySnapshot) => {
+          if (!pacienteQuerySnapshot.empty) {
+            return pacienteQuerySnapshot.docs[0].data();
+          } else {
+            return null;
+          }
+        });
+  
+        pacientesPromises.push(pacientePromise);
+      });
+  
+      const pacientes = await Promise.all(pacientesPromises);
+  
+      const filteredPacientes = pacientes.filter((paciente) => paciente != null);
+  
+      return filteredPacientes.length > 0 ? filteredPacientes : null;
+    } catch (error) {
+      console.error('Error al obtener pacientes:', error);
       return null;
     }
-  
-    const pacientesSet = new Set<string>();
-  
-    querySnapshot.forEach((doc) => {
-      const pacienteData = doc.data();
-      const paciente = pacienteData['Paciente'];
-      pacientesSet.add(paciente);
-    });
-  
-    const pacientesList = Array.from(pacientesSet.values());
-  
-    return pacientesList;
   }
+  
   
   
 
