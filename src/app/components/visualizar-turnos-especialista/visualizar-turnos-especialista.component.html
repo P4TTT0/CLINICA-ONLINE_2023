@@ -6,31 +6,9 @@
             </div>
         </div>
 
-        <div class="info-container">
-            <div class="row">
-                <div class="col-md-12 text">
-                    <span><b>Especialidad</b></span>
-                </div>
-            </div>
-            <div class="row especialidad">
-                <div *ngFor="let especialidad of this.especialidades" class="radio-button col-md-3 col-sm-4">
-                    <input type="radio" [id]="especialidad" name="radios" [value]="especialidad" [(ngModel)]="this.especialidadSeleccionada"  (change)="onEspecialidadChange(especialidad)" checked>
-                    <label [for]="especialidad">{{especialidad}}</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-container">
-            <div class="row">
-                <div class="col-md-12 text">
-                    <span><b>Pacientes</b></span>
-                </div>
-            </div>
-            <div class="row especialidad">
-                <div *ngFor="let paciente of this.pacientes" class="radio-button col-md-2 col-sm-4">
-                    <input type="radio" [id]="paciente" name="radio" [value]="paciente" (change)="onPacienteChange(paciente)" [(ngModel)]="this.pacienteSeleccionado"  checked>
-                    <label [for]="paciente">{{paciente}}</label>
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input class="input-filtro" type="text" [(ngModel)]="inputFiltro" (input)="filtrarTurnos()" placeholder="Buscar...">
             </div>
         </div>
 

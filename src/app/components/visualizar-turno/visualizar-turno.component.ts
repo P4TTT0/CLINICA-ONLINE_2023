@@ -58,13 +58,20 @@ export class VisualizarTurnoComponent {
         {
           return valor.toLowerCase().includes(this.inputFiltro.toLowerCase());
         }
-        else 
+        else
         {
-          if (typeof valor === 'object' && valor !== null) 
+          if(typeof valor === 'number')
           {
-            return Object.values(valor).some((valorAnidado: any) =>
-              typeof valorAnidado === 'string' && valorAnidado.toLowerCase().includes(this.inputFiltro.toLowerCase())
-            );
+            return valor.toString().toLowerCase().includes(this.inputFiltro.toLowerCase());
+          }
+          else 
+          {
+            if (typeof valor === 'object' && valor !== null) 
+            {
+              return Object.values(valor).some((valorAnidado: any) =>
+                typeof valorAnidado === 'string' && valorAnidado.toLowerCase().includes(this.inputFiltro.toLowerCase())
+              );
+            }
           }
         }
         

@@ -5,6 +5,16 @@
     padding: 20px;
 }
 
+.input-filtro
+{
+    margin-bottom: 10px;
+    border: none;
+    background-color: #47444859;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+}
+
 .especialidad
 {
     display: flex;

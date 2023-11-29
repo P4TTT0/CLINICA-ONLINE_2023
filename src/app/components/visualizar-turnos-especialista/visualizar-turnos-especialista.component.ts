@@ -24,6 +24,8 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
   public viewMessage : boolean = false;
   public viewHistoria : boolean = false;
 
+  public inputFiltro : any;
+
   constructor(private data : DataService, private auth : AuthService) {}
 
   async ngOnInit()
@@ -52,6 +54,36 @@ export class VisualizarTurnosEspecialistaComponent implements OnInit{
     this.especialidadSeleccionada = null;
     this.pacienteSeleccionado = null;
     this.pacientes = null;
+  }
+
+  public filtrarTurnos()
+  {
+    this.turnosFiltrados = this.turnos.filter((turno : any) =>
+      Object.values(turno).some((valor: any) => {
+        if (typeof valor === 'string' || valor instanceof String) 
+        {
+          return valor.toLowerCase().includes(this.inputFiltro.toLowerCase());
+        }
+        else
+        {
+          if(typeof valor === 'number')
+          {
+            return valor.toString().toLowerCase().includes(this.inputFiltro.toLowerCase());
+          }
+          else 
+          {
+            if (typeof valor === 'object' && valor !== null) 
+            {
+              return Object.values(valor).some((valorAnidado: any) =>
+                typeof valorAnidado === 'string' && valorAnidado.toLowerCase().includes(this.inputFiltro.toLowerCase())
+              );
+            }
+          }
+        }
+        
+        return false;
+      })
+    );
   }
 
   public async onEspecialidadChange(especialidad : any)
