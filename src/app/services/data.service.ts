@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot } from
+import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot, Timestamp } from
 '@angular/fire/firestore';
 import { BehaviorSubject, Observable, groupBy, map } from 'rxjs';
+import { DateTimeFormatOptions } from 'intl';
 
 @Injectable({
   providedIn: 'root'
@@ -256,6 +257,39 @@ export class DataService {
     });
   }
 
+  public getTurnosToChart(): Observable<any[]> {
+    const turnoCollection = collection(this.firestore, 'Turno');
+    const q = query(turnoCollection,
+      orderBy('Año'),
+      orderBy('Mes'),  
+      orderBy('Dia'),  
+      orderBy('Horario')  
+    );
+  
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const turnos = querySnapshot.docs.map((doc) => doc.data());
+  
+        const turnosPorEspecialidad = this.groupAndCountBy(turnos, 'Especialidad');
+  
+        observer.next(turnosPorEspecialidad);
+      });
+  
+      return () => unsubscribe();
+    });
+  }
+  
+  private groupAndCountBy(array: any[], property: string): any[] {
+    const grouped = array.reduce((groups, item) => {
+      const groupKey = item[property];
+      groups[groupKey] = groups[groupKey] || { [property]: groupKey, count: 0 };
+      groups[groupKey].count += 1;
+      return groups;
+    }, {});
+  
+    return Object.values(grouped);
+  }
+
   private sortByCustomOrder(data: any[], customOrder: string[], field: string): any[] {
     return data.sort((a, b) => {
       const aValue = customOrder.indexOf(a[field]);
@@ -476,6 +510,203 @@ export class DataService {
   {
     const col = collection(this.firestore, 'Turno');
     addDoc(col, turno);
+  }
+
+  public async saveLog(log: any)
+  {
+    const col = collection(this.firestore, 'Log');
+    addDoc(col, log);
+  }
+
+  public async getDaysToLog(): Promise<string[]> {
+    const logCollection = collection(this.firestore, 'Log');
+
+    // Consulta para obtener logs con un UserName específico
+    const q = query(logCollection, orderBy('Date', 'asc'));
+
+    // Obtener los documentos que coinciden con la consulta
+    const querySnapshot = await getDocs(q);
+
+    // Conjunto para almacenar fechas únicas
+    const uniqueDates = new Set<string>();
+
+    // Recorrer los documentos y formatear las fechas
+    querySnapshot.forEach(doc => {
+      const logData = doc.data();
+      const date = logData?.['Date']?.toDate(); // Suponiendo que 'Date' es un objeto tipo Timestamp en Firestore
+
+      if (date instanceof Date) {
+        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+        // Agregar la fecha al conjunto para asegurar unicidad
+        uniqueDates.add(formattedDate);
+      }
+    });
+
+    // Convertir el conjunto a un array antes de devolverlo
+    const formattedDates = Array.from(uniqueDates);
+
+    return formattedDates;
+  }
+
+  public async getCountsToLog(): Promise<number[]> {
+    const logCollection = collection(this.firestore, 'Log');
+  
+    // Consulta para obtener logs con un UserName específico
+    const q = query(logCollection, orderBy('Date', 'asc'));
+  
+    // Obtener los documentos que coinciden con la consulta
+    const querySnapshot = await getDocs(q);
+  
+    // Objeto para almacenar la cantidad de registros por día
+    const logsCountByDay: { [date: string]: number } = {};
+  
+    // Recorrer los documentos y contar registros por día
+    querySnapshot.forEach(doc => {
+      const logData = doc.data();
+      const date = logData?.['Date']?.toDate(); // Suponiendo que 'Date' es un objeto tipo Timestamp en Firestore
+  
+      if (date instanceof Date) {
+        // Formatear la fecha sin el horario
+        const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  
+        // Incrementar el contador para la fecha correspondiente
+        logsCountByDay[formattedDate] = (logsCountByDay[formattedDate] || 0) + 1;
+      }
+    });
+  
+    // Convertir los valores del objeto a un array de números antes de devolverlo
+    const resultArray = Object.values(logsCountByDay);
+  
+    return resultArray;
+  }
+
+  public async getLogs(dateString : string): Promise<number[]> {
+    const logCollection = collection(this.firestore, 'Log'); 
+    const dateParts = dateString.split('/');
+    const dateObject = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
+    dateObject.setDate(dateObject.getDate() + 1);
+    const startOfRequestedDate = new Date(dateObject);
+    startOfRequestedDate.setHours(0, 0, 0, 0); 
+    const endOfRequestedDate = new Date(dateObject);
+    endOfRequestedDate.setHours(23, 59, 59, 999);
+    console.log(startOfRequestedDate, endOfRequestedDate);
+
+    const q = query(logCollection, where('Date', '>=', startOfRequestedDate), where('Date', '<=', endOfRequestedDate));
+
+    const querySnapshot = await getDocs(q);
+
+    // Array para almacenar los resultados
+    const logs: any[] = [];
+
+    // Recorrer los documentos y almacenar la información
+    querySnapshot.forEach(doc => {
+      const logData = doc.data();
+      logs.push(logData);
+    });
+
+    return logs;
+  }
+
+  public async getTurnosToChartByMes(nombreMes: string): Promise<{ Dia: number; CantidadTurnos: number }[]> {
+    const turnoCollection = collection(this.firestore, 'Turno');
+  
+    // Obtener el número del mes
+    const numeroMes = this.obtenerNumeroMes(nombreMes);
+  
+    // Consulta para obtener turnos del mes y ordenar por día
+    const q = query(
+      turnoCollection,
+      where('Mes', '==', nombreMes),
+      orderBy('Dia')
+    );
+  
+    // Obtener los documentos que coinciden con la consulta
+    const querySnapshot = await getDocs(q);
+  
+    // Objeto para almacenar la cantidad de turnos por día
+    const turnosPorDia: { [dia: number]: number } = {};
+  
+    // Recorrer los documentos y contar la cantidad de turnos por día
+    querySnapshot.forEach((doc) => {
+      const turnoData = doc.data();
+      const dia = turnoData?.['Dia'];
+  
+      if (dia) {
+        // Incrementar la cantidad de turnos para el día
+        turnosPorDia[dia] = (turnosPorDia[dia] || 0) + 1;
+      }
+    });
+  
+    // Convertir el objeto a un array de objetos con las propiedades Dia y CantidadTurnos
+    const result = Object.entries(turnosPorDia).map(([dia, cantidadTurnos]) => ({
+      Dia: parseInt(dia),
+      CantidadTurnos: cantidadTurnos,
+    }));
+  
+    return result;
+  }
+  
+  private obtenerNumeroMes(nombreMes: string): number {
+    const mesesOrdenados = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    return mesesOrdenados.indexOf(nombreMes) + 1;
+  }
+
+  public async getTurnosToChartEspecialista(fechaDesde: Date, fechaHasta: Date, estado : boolean): Promise<{ Especialista: string; CantidadTurnos: number }[]> {
+    const turnoCollection = collection(this.firestore, 'Turno');
+  
+    // Obtener el rango de fechas en formato Timestamp de Firestore
+    const fechaDesdeFirestore = this.timeStampConvert(new Date(fechaDesde));
+    const fechaHastaFirestore = this.timeStampConvert(new Date(fechaHasta));
+    let q : any;
+    if(estado)
+    {
+      q = query(turnoCollection,
+        where('FechaCompleta', '>=', fechaDesdeFirestore),
+        where('FechaCompleta', '<=', fechaHastaFirestore),
+        where('Estad', '==', 'finalizado'),
+      );
+    }
+    else
+    {
+      q = query(turnoCollection,
+        where('FechaCompleta', '>=', fechaDesdeFirestore),
+        where('FechaCompleta', '<=', fechaHastaFirestore),
+      );
+    }
+  
+    // Obtener los documentos que coinciden con la consulta
+    const querySnapshot = await getDocs(q);
+  
+    // Objeto para almacenar la cantidad de turnos por especialista
+    const turnosPorEspecialista: { [especialista: string]: number } = {};
+  
+    // Recorrer los documentos y contar la cantidad de turnos por especialista
+    querySnapshot.forEach((doc) => {
+      const turnoData : any = doc.data();
+      const especialista = turnoData?.['Especialista'];
+  
+      if (especialista) {
+        // Incrementar la cantidad de turnos para el especialista
+        turnosPorEspecialista[especialista] = (turnosPorEspecialista[especialista] || 0) + 1;
+      }
+    });
+  
+    // Convertir el objeto a un array de objetos con las propiedades Especialista y CantidadTurnos
+    const result = Object.entries(turnosPorEspecialista).map(([especialista, cantidadTurnos]) => ({
+      Especialista: especialista,
+      CantidadTurnos: cantidadTurnos,
+    }));
+  
+    return result;
+  }
+  
+  private timeStampConvert(fecha: Date): Timestamp {
+    if (!(fecha instanceof Date)) {
+      console.error('El valor pasado a timeStampConvert no es una instancia de Date:', fecha);
+    }
+  
+    return Timestamp.fromDate(fecha);
   }
 
   public async getUserByUserName(userName : string)

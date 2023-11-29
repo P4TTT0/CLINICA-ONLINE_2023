@@ -44,6 +44,11 @@ import { HistoriasClinicasUsuriosComponent } from './components/historias-clinic
 import { UserHistoriaClinicaComponent } from './components/modals/user-historia-clinica/user-historia-clinica.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { HttpClientModule } from '@angular/common/http';
+import { LogsComponent } from './components/charts/logs/logs.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { TurnosEspecialidadComponent } from './components/charts/turnos-especialidad/turnos-especialidad.component';
+import { TurnosDiasComponent } from './components/charts/turnos-dias/turnos-dias.component';
+import { TurnosEspecialistasComponent } from './components/charts/turnos-especialistas/turnos-especialistas.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +78,10 @@ import { HttpClientModule } from '@angular/common/http';
     HistoriaClinicaComponent,
     HistoriasClinicasUsuriosComponent,
     UserHistoriaClinicaComponent,
+    LogsComponent,
+    TurnosEspecialidadComponent,
+    TurnosDiasComponent,
+    TurnosEspecialistasComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +101,9 @@ import { HttpClientModule } from '@angular/common/http';
     NgxCaptchaModule,
     MdbModalModule,
     HttpClientModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'), 
+    }),
   ],
   providers: [{provide: FIREBASE_OPTIONS, useValue: environment.firebase}, DatePipe],
   bootstrap: [AppComponent]

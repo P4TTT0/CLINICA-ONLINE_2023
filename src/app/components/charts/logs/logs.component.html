@@ -1,0 +1,21 @@
+<div class="background">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center mb-2">
+            <h1>Inicios de sesión totales: {{this.countsTotales}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div echarts [options]="option" (chartClick)="onChartClick($event)"></div>
+        </div>
+    </div>
+    <div class="row users-container">
+        <div class="col-md-12 d-flex justify-content-center">
+            <h1>{{this.fechaSeleccionada}}</h1>
+        </div>
+        <div class="col-md-12 user" *ngFor="let user of this.users">
+            <span>{{user.UserName}}</span>
+            <span>{{user.Date.toDate() | date: 'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+    </div>
+</div>

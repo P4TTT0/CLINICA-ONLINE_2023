@@ -1,0 +1,13 @@
+<div class="background">
+    <div class="row">
+        <div *ngFor="let mes of this.meses" class="radio-button col-md-1 col-sm-4">
+            <input type="radio" [id]="mes" name="radios" [value]="mes" [(ngModel)]="this.mesSeleccionado"  (change)="onMesChange(mes)" checked>
+            <label [for]="mes">{{mes}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div echarts [options]="option"></div>
+        </div>
+    </div>
+</div>

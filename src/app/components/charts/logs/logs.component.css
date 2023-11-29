@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.background
+{
+    padding: 10px;
+}
+.users-container
+{
+    padding: 30px;
+    background-color: #474448c4;
+    border-radius: 8px;
+    height: 300px;
+    overflow-y: scroll;
+    flex-direction: column;
+}
+
+.user
+{
+    background-color: #b7b7b7;
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    height: 40px;
+}

@@ -100,6 +100,7 @@ export class SolicitarTurnoComponent implements OnInit {
         Dia: this.daySeleccionado.day,
         Horario: this.horaSeleccionada,
         Estad: 'pendiente',
+        FechaCompleta: new Date(this.daySeleccionado.year, this.daySeleccionado.month - 1, this.daySeleccionado.day),
       }
       this.data.SaveTurno(turno);
       Swal.fire(

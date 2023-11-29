@@ -11,6 +11,10 @@ import { VisualizarTurnoComponent } from './components/visualizar-turno/visualiz
 import { VisualizarTurnosEspecialistaComponent } from './components/visualizar-turnos-especialista/visualizar-turnos-especialista.component';
 import { VisualizarTurnosAdminComponent } from './components/visualizar-turnos-admin/visualizar-turnos-admin.component';
 import { HistoriasClinicasUsuriosComponent } from './components/historias-clinicas-usurios/historias-clinicas-usurios.component';
+import { LogsComponent } from './components/charts/logs/logs.component';
+import { TurnosEspecialidadComponent } from './components/charts/turnos-especialidad/turnos-especialidad.component';
+import { TurnosDiasComponent } from './components/charts/turnos-dias/turnos-dias.component';
+import { TurnosEspecialistasComponent } from './components/charts/turnos-especialistas/turnos-especialistas.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -23,7 +27,8 @@ const routes: Routes = [
   {path: "ver-turnos", component: VisualizarTurnoComponent},
   {path: 'ver-turnos-especialista', component: VisualizarTurnosEspecialistaComponent},
   {path: 'ver-turnos-admin', component: VisualizarTurnosAdminComponent},
-  {path: 'historias-usuarios', component: HistoriasClinicasUsuriosComponent}
+  {path: 'historias-usuarios', component: HistoriasClinicasUsuriosComponent},
+  {path: 'chart', component: TurnosEspecialistasComponent}
 ];
 
 @NgModule({

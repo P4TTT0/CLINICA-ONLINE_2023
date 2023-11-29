@@ -68,6 +68,11 @@ export class LoginComponent implements OnInit {
           '¡Inicio de sesion exitoso!',
           'success'
         );
+        let log = {
+          UserName: this.auth.userName,
+          Date: new Date(),
+        }
+        await this.data.saveLog(log);
         this.router.navigateByUrl('/home');
         console.log(this.auth.userName);
       }

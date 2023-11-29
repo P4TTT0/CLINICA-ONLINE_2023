@@ -1,0 +1,23 @@
+<div class="background">
+    <div class="row">
+        <div class="col-md-12 d-flex">
+            <div>
+                <span>Desde: </span>
+                <input type="date" [(ngModel)]="this.fechaDesde" (change)="onDateChange()">
+            </div>
+            <div>
+                <span>Hasta: </span>
+                <input type="date" [(ngModel)]="this.fechaHasta" (change)="onDateChange()">
+            </div>
+            <div>
+                <span>Finalizado: </span>
+                <input type="checkbox" [(ngModel)]="this.estado" (change)="onDateChange()">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div echarts [options]="option"></div>
+        </div>
+    </div>
+</div>
