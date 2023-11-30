@@ -40,4 +40,21 @@ La web ha sido diseñada en el lenguaje de TYPESCRIPT y con la ayuda del FrameWo
 
 ![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/e7cab4e1-a8c7-4356-9749-039385e81678)
 
+## DIRECTIVAS
+
+- HOVER-TRACE: Genera un rastro del cursor:
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/da2c5980-23b7-4f36-a003-d9b02bda5338)
+
+- HOVER-HIGHLIGHT: Oscurece el texto de bienvenida cuando el cursor está por encima.
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/0a59c3f7-c3f7-4573-9447-87e06fd95de2)
+
+- CIRCLE: Al hacer click genera circulo que luego de un tiempo desaparecen
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/f34a1213-8a07-42ae-b1f6-a0329ca7ce1e)
+
+
+
+
 
