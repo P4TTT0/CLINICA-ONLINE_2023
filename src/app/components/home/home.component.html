@@ -1,8 +1,17 @@
 <app-no-validated *ngIf="this.auth.validationState == null && this.auth.rol == 'Especialista'; else elseBlock"></app-no-validated>
 <ng-template #elseBlock>
-    <div class="background" appHoverTrace>
-        <h1>¡Bienvenido!</h1>
-        <p *ngIf="this.auth.rol == 'Usuario'">Te cuidamos SIEMPRE.</p>
-        <p *ngIf="this.auth.rol == 'Especialista'">Tus manos salvan VIDAS.</p>
+    <div class="background" appHoverTrace appFallingCircle>
+        <div class="bienvenido d-flex justify-content-between align-items-center">
+            <div>
+                <h1 appHoverHighlight>¡Bienvenido!</h1>
+                <p>@{{this.auth.userName | uppercase}}</p>
+            </div>
+            <img style="width: 150px; height: 150px;" src="./../../../assets/Isotipo_NoBCK_GREN.png">
+        </div>
+        <div class="footer">
+            <span style="margin-left: 60px;"><i class="bi bi-c-circle"></i>TTT 2023 - 2024</span>
+
+            <a href="https://www.instagram.com/p4ttt0" target="_blank"><i class="bi bi-instagram" style="font-size: 80px;" ></i></a>
+        </div>
     </div>
 </ng-template>

@@ -51,6 +51,8 @@ import { TurnosDiasComponent } from './components/charts/turnos-dias/turnos-dias
 import { TurnosEspecialistasComponent } from './components/charts/turnos-especialistas/turnos-especialistas.component';
 import { VisualizarChartsComponent } from './components/charts/visualizar-charts/visualizar-charts.component';
 import { HoverTraceDirective } from './directives/hover-trace.directive';
+import { FallingCircleDirective } from './directives/falling-circle.directive';
+import { HoverHighlightDirective } from './directives/hover-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { HoverTraceDirective } from './directives/hover-trace.directive';
     TurnosDiasComponent,
     TurnosEspecialistasComponent,
     VisualizarChartsComponent,
-    HoverTraceDirective
+    HoverTraceDirective,
+    FallingCircleDirective,
+    HoverHighlightDirective
   ],
   imports: [
     BrowserModule,
