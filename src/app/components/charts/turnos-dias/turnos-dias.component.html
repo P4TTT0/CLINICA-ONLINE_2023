@@ -1,5 +1,11 @@
 <div class="background">
     <div class="row">
+        <div class="col-md-12 mb-2 title">
+            <h1>Grafico de turnos por dia.</h1>
+            <button class="btn" (click)="onPdfDownload()"><span>Descargar </span><i class="bi bi-download"></i></button>
+        </div>
+    </div>
+    <div class="row">
         <div *ngFor="let mes of this.meses" class="radio-button col-md-1 col-sm-4">
             <input type="radio" [id]="mes" name="radios" [value]="mes" [(ngModel)]="this.mesSeleccionado"  (change)="onMesChange(mes)" checked>
             <label [for]="mes">{{mes}}</label>
@@ -7,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div echarts [options]="option"></div>
+            <div #chartContainer echarts [options]="option"></div>
         </div>
     </div>
 </div>

@@ -3,6 +3,22 @@
     padding: 0;
 }
 
+.title
+{
+    background-color: #474448;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn
+{
+    background-color: #34323596;
+    padding: 10px;
+    border-radius: 20px;
+}
 
 .background
 {
@@ -13,8 +29,7 @@
     padding: 30px;
     background-color: #474448c4;
     border-radius: 8px;
-    height: 300px;
-    overflow-y: scroll;
+    height: 270px;
     flex-direction: column;
 }
 
@@ -29,4 +44,10 @@
     border-radius: 8px;
     margin-bottom: 10px;
     height: 40px;
+}
+
+.container
+{
+    overflow-y: scroll;
+    height: 150px;
 }

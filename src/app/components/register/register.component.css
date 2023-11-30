@@ -29,14 +29,6 @@
     align-items: center;
 }
 
-.img-btn
-{
-    width: 200px;
-    border-radius: 8px;
-    filter: brightness(0.3);
-    transition: all 0.3s;
-}
-
 .btn-op:hover
 {
     box-shadow: 15px 15px 0px 0px #7E7D7F;
@@ -47,6 +39,15 @@
 {
     filter: brightness(1);
 }
+
+.img-btn
+{
+    width: 200px;
+    border-radius: 8px;
+    filter: brightness(0.3);
+    transition: all 0.3s;
+}
+
 
 .login-input
 {

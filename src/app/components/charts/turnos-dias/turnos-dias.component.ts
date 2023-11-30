@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import html2canvas from 'html2canvas';
 import { DataService } from 'src/app/services/data.service';
+import { FilesService } from 'src/app/services/files.service';
 
 @Component({
   selector: 'app-turnos-dias',
@@ -8,12 +11,12 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./turnos-dias.component.css']
 })
 export class TurnosDiasComponent implements OnInit {
-
+  @ViewChild('chartContainer') chartContainer! : ElementRef;
   public option! : EChartsOption;
   public meses : string[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   public mesSeleccionado! : string;
 
-  constructor(private data : DataService) {}
+  constructor(private data : DataService, private datePipe : DatePipe, private file : FilesService) {}
 
   async ngOnInit() {
   }
@@ -59,5 +62,15 @@ export class TurnosDiasComponent implements OnInit {
         }
       ]
     };
+  }
+
+  public onPdfDownload()
+  {
+    let image : string = "";
+    html2canvas(this.chartContainer.nativeElement).then((canvas: { toDataURL: (arg0: string) => any; }) => {
+    image = canvas.toDataURL('image/png');
+    let fecha = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
+    this.file.downloadPdfChart('Grafico de logs', 'turnos-dias_' + fecha, image);
+    });
   }
 }

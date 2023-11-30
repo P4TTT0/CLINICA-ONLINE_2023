@@ -1,0 +1,37 @@
+.background
+{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn-op
+{
+    padding: 30px;
+    background-color: #474448;
+    width: 90%;
+    margin: 10px 30px;
+    font-size: 40px;
+    color: #222;
+    border-radius: 0px;
+    box-shadow: 10px 10px 0px 0px #7E7D7F;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #fff6;
+}
+
+.btn-op:hover
+{
+    box-shadow: 15px 15px 0px 0px #7E7D7F;
+    transform: scale(1.01);
+}
+
+.btn-op:hover .img-btn
+{
+    filter: brightness(1);
+}

@@ -24,6 +24,7 @@
       "dom"
     ]
   },
+  "types": ["html2canvas"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

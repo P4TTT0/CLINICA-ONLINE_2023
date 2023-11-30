@@ -35,6 +35,9 @@
         <li class="nav-item" *ngIf="this.auth.userName.length > 1 && this.auth.rol != 'Usuario'" >
           <a class="nav-link" href="historias-usuarios">Pacientes</a>
         </li>
+        <li class="nav-item" *ngIf="this.auth.userName.length > 1 && this.auth.rol == 'Admin'" >
+          <a class="nav-link" href="chart">Graficos</a>
+        </li>
         <li class="nav-item" *ngIf="this.auth.userName.length > 1" style="cursor: pointer;">
           <a class="nav-link" (click)="onTurnosClick()">Turnos</a>
         </li>

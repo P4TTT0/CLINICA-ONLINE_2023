@@ -49,6 +49,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { TurnosEspecialidadComponent } from './components/charts/turnos-especialidad/turnos-especialidad.component';
 import { TurnosDiasComponent } from './components/charts/turnos-dias/turnos-dias.component';
 import { TurnosEspecialistasComponent } from './components/charts/turnos-especialistas/turnos-especialistas.component';
+import { VisualizarChartsComponent } from './components/charts/visualizar-charts/visualizar-charts.component';
+import { HoverTraceDirective } from './directives/hover-trace.directive';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { TurnosEspecialistasComponent } from './components/charts/turnos-especia
     TurnosEspecialidadComponent,
     TurnosDiasComponent,
     TurnosEspecialistasComponent,
+    VisualizarChartsComponent,
+    HoverTraceDirective
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,28 @@
 <div class="background">
     <div class="row">
-        <div class="col-md-12 d-flex">
-            <div>
-                <span>Desde: </span>
-                <input type="date" [(ngModel)]="this.fechaDesde" (change)="onDateChange()">
+        <div class="col-md-12 d-flex justify-content-between align-items-center time">
+            <div class="d-flex">
+                <div>
+                    <span class="time-span">Desde: </span>
+                    <input class="time-span date" type="date" [(ngModel)]="this.fechaDesde" (change)="onDateChange()">
+                </div>
+                <div>
+                    <span class="time-span">Hasta: </span>
+                    <input class="time-span date" type="date" [(ngModel)]="this.fechaHasta" (change)="onDateChange()">
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="time-span">Finalizado: </span>
+                    <input class="time-span" type="checkbox" [(ngModel)]="this.estado" (change)="onDateChange()">
+                </div>
             </div>
             <div>
-                <span>Hasta: </span>
-                <input type="date" [(ngModel)]="this.fechaHasta" (change)="onDateChange()">
-            </div>
-            <div>
-                <span>Finalizado: </span>
-                <input type="checkbox" [(ngModel)]="this.estado" (change)="onDateChange()">
+                <button class="btn" (click)="onPdfDownload()"><span>Descargar </span><i class="bi bi-download"></i></button>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div echarts [options]="option"></div>
+            <div #chartContainer echarts [options]="option"></div>
         </div>
     </div>
 </div>

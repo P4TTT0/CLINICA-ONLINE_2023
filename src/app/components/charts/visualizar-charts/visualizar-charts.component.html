@@ -1,0 +1,25 @@
+
+<div class="background" [@slideInUp] *ngIf="this.tipo == null; else elseBlock">
+    <button class="btn btn-op" (click)="onOptionClick('dias')">
+        <i class="bi bi-graph-up"></i>
+        <span>Grafico de turnos diarios</span>
+    </button>
+    <button class="btn btn-op" (click)="onOptionClick('especialidad')">
+        <i class="bi bi-bar-chart-line-fill"></i>
+        <span>Grafico de turnos por especialidad</span>
+    </button>
+    <button class="btn btn-op" (click)="onOptionClick('especialista')">
+        <i class="bi bi-bar-chart-line"></i>
+        <span>Grafico de turnos por especialista</span>
+    </button>
+    <button class="btn btn-op" (click)="onOptionClick('logs')">
+        <i class="bi bi-file-text"></i>
+        <span>Logs de inicio de sesion</span>
+    </button>
+</div>
+<ng-template #elseBlock>
+    <app-turnos-dias *ngIf="this.tipo == 'dias'"></app-turnos-dias>
+    <app-turnos-especialidad *ngIf="this.tipo == 'especialidad'"></app-turnos-especialidad>
+    <app-turnos-especialistas *ngIf="this.tipo == 'especialista'"></app-turnos-especialistas>
+    <app-logs *ngIf="this.tipo == 'logs'"></app-logs>
+</ng-template>
