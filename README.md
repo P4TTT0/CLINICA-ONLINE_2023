@@ -25,3 +25,19 @@ La web ha sido diseñada en el lenguaje de TYPESCRIPT y con la ayuda del FrameWo
 ## LOGO
 
 ![Isotipo_NoBCK_GREN](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/48a2435e-49d0-41a8-b11c-448a27955215)
+
+## PIPES
+
+- DATE: Para transformar fechas en un formato valido.
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/fef54813-4b62-4920-8cf0-5dc3b9a4ed11)
+
+- UPPERCASE: Para colocar en mayusculas el nombre del usuario.
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/c4e12d0c-d5a2-472d-b641-dd8512799a6f)
+
+- KEYVALUE: Para generar una tabla dinamicamente.
+
+![image](https://github.com/P4TTT0/CLINICA-ONLINE_2023/assets/98591487/e7cab4e1-a8c7-4356-9749-039385e81678)
+
+
